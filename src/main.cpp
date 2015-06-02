@@ -1,5 +1,5 @@
 
-
+#include "ItPixelesNuevos.h"
 //#include "Matrix.h"
 #include "Auxiliares.h"
 
@@ -26,45 +26,45 @@ void ZoomVecinosMasCercanos(const Matrix& input, Matrix& output, int k)
     int frecuencias [16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};   
     calculoFrecuencia(input, frecuencias);
 
-    for(int i =0 ; i< output.rows();i++)
+    ItPixelesNuevos it(output.rows(), output.columns(), k);
+
+    while(!it.end())
     {
-        for(int j=0;j< output.columns();j++)
+        int i = it.get().first;
+        int j = it.get().second;
+        //std::cout << "Fila: " << i << "  Columna: " << j << "\r"; std::cout.flush(); //Para ver por donde anda
+
+        int distancia = output.rows()*output.columns() + 1;
+        int valor = 0;
+        
+        // Supongamos que el punto existente, en la img original es el (i,j)
+        // Su nuevo (i', j') en la extendida es: (... Fabi tiene la cuenta)
+        // Itero por los originales y comparo distancias.
+        int ki = i - (i % (k+1));                                       //Fila con pixeles originales anterior
+        int kil = (i + k) >= output.rows()? output.rows()-1 : i + k;    //Fila con pixeles originales posterior
+
+        for(ki; ki <= kil; ki += + k + 1)
         {
-            if(i % (k+1) == 0 && j % (k+1) == 0) continue;// Sigo sino es un punto original.
+            int kj = j - (j % (k+1));                                           //Columna con pixeles originales anterior
+            int kjl = (j + k) >= output.columns()? output.columns()-1 : j + k;  //Columna con pixeles originales posterior
 
-            std::cout << "Fila: " << i << "  Columna: " << j << "\r"; std::cout.flush(); //Para ver por donde anda
-
-            int distancia = output.rows()*output.columns() + 1;
-            int valor = 0;
-            
-            // Supongamos que el punto existente, en la img original es el (i,j)
-            // Su nuevo (i', j') en la extendida es: (... Fabi tiene la cuenta)
-            // Itero por los originales y comparo distancias.
-            int ki = i - (i % (k+1));                                       //Fila con pixeles originales anterior
-            int kil = (i + k) >= output.rows()? output.rows()-1 : i + k;    //Fila con pixeles originales posterior
-
-            for(ki; ki <= kil; ki += + k + 1)
+            for(kj; kj <= kjl; kj += k + 1 )
             {
-                int kj = j - (j % (k+1));                                           //Columna con pixeles originales anterior
-                int kjl = (j + k) >= output.columns()? output.columns()-1 : j + k;  //Columna con pixeles originales posterior
-
-                for(kj; kj <= kjl; kj += k + 1 )
+                //actualizo el nuevo mas cercano
+                int d = norma1(i,j,ki,kj);
+                if(distancia > d)
                 {
-                    //actualizo el nuevo mas cercano
-                    int d = norma1(i,j,ki,kj);
-                    if(distancia > d)
-                    {
-                        distancia = d;
-                        valor = output(ki,kj);
-                    }
-                    else if(distancia == d && frecuencias[output(ki,kj)/16] > frecuencias[valor/16])
-                            valor = output(ki,kj); // seteas tu nueva mejor clasificacion
-                    // else
-                       // no hago nada decido quedarme con el actual
+                    distancia = d;
+                    valor = output(ki,kj);
                 }
+                else if(distancia == d && frecuencias[output(ki,kj)/16] > frecuencias[valor/16])
+                        valor = output(ki,kj); // seteas tu nueva mejor clasificacion
+                // else
+                   // no hago nada decido quedarme con el actual
             }
-            output(i,j) = valor;
         }
+        output(i,j) = valor;
+        ++it;
     }
 }
 
