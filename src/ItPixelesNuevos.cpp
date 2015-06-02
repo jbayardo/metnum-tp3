@@ -1,8 +1,7 @@
 #include "ItPixelesNuevos.h"
-
 bool ItPixelesNuevos::end()
 {
-    return c == -1 && f == -1;  // este punto ya es viejo, detengase!
+    return c == tColumnas-1 && f == tFilas-1;  // este punto ya es viejo, detengase!
 }
 
 std::pair<int, int> ItPixelesNuevos::get()
