@@ -14,6 +14,57 @@ void calculoFrecuencia(const Matrix& m, int* frecuencias)
 
 }
 
+void ZoomBilineal(const Matrix& original, Matrix& output, int k)
+{
+    // recorremos las filas que tienen pixeles viejos y llenamos los pixeles nuevos entre ellos
+    for (int i=0; i < original.rows(); i++)
+    {
+        // traduccion del indice a la nueva matrix
+        int iNew = i * (k+1);
+        for (int j=0; j < original.columns()-1; j++)
+        {
+            // agarramos los puntos viejos de a pares y llenamos los que hay entre ellos.
+            int jNew = j*(k+1);
+
+            int iNext = i;
+            int jNext = (j+1)*(k+1);
+
+            for (int _j = 1; _j < k+1; _j++)
+            {
+                //No sabemos si castear a double en algun momento para mejorar la precision
+                output(iNew,jNew +_j) = (output(iNew, jNext) - output(iNew,jNew))*(_j)/(k+1) + output(iNew, jNew);
+                //Si 0 y k+1 son los puntos a interpolar, entonces la recta es: y= (c_(k+1) - c_0)/(k+1) * x + c_0
+                //Donde x es el pixel para el que se quiere calcular la intensidad
+            }
+        }
+    }
+
+    // interpolamos por columnas entre puntos originales
+    for (int j=0; j < original.columns(); j++)
+    {
+        int jNew = j*(k+1);
+        for (int i = 0; i < original.rows()-1; i++)
+        {
+            int iNew = i*(k+1);
+            int jNext = j;
+            int iNext = (i+1)*(k+1);
+
+            for (int _i = 1; _i < k+1; _i++)
+            {
+                output(iNew+ _i, jNew) = (output(iNext, jNew) - output(iNew, jNew))*(_i)/(k+1) + output(iNew, jNew);
+            }
+        }
+    }
+
+    for (int i = 1; i < output.rows()-1; i = (i+1) % (k+1) == 0 ? i+2 : i+1)
+    {
+        // estoy parado en una fila i sin puntos viejos
+        // recorro todas las columnas, menos la primera y la ultima que ya fueron estimadas
+        for (int _j=1; _j < output.columns()-1; _j++)
+            output(i,_j) = (output(i,output.columns()-1) - output(i,0)) * _j / (k+1) + output(i,0);
+    }    
+}
+
 void ZoomVecinosMasCercanos(const Matrix& input, Matrix& output, int k)
 {
     // Para este modo de zoom decidimos lo siguiente:
@@ -106,6 +157,9 @@ int main(int argc, char *argv[]) {
     {
         case 0:
             ZoomVecinosMasCercanos(m,output,k);
+            break;
+        case 1:
+            ZoomBilineal(m,output,k);
             break;
         default:
             cout << "MODO DE OPERACION NO DEFINIDO " << endl;
