@@ -32,15 +32,37 @@ void ZoomBilineal(const Matrix& original, Matrix& output, int k)
             for (int _j = 1; _j < k+1; _j++)
             {
                 //No sabemos si castear a double en algun momento para mejorar la precision
-                output(iNew,jNew +_j) = (output(iNew, jNext) - output(iNew,jNew))*(_j)/(k+1) + output(iNew, jNew);
+                output(iNew,jNew +_j) = ( output(iNew, jNext) - output(iNew,jNew))*(_j)/(k+1) + output(iNew, jNew);
                 //Si 0 y k+1 son los puntos a interpolar, entonces la recta es: y= (c_(k+1) - c_0)/(k+1) * x + c_0
                 //Donde x es el pixel para el que se quiere calcular la intensidad
             }
         }
     }
 
+    // Las filas con puntos viejos, ya todas tienen un valor asignado (interpolado u original)
+
+    // Hacemos la interpolacion que queda por columnas.
+
+    for (int j = 0; j < output.columns(); j++)
+    {
+        // recorro de la matriz output, las filas con puntos viejos, y las agarro de a pares.
+        // Por eso no agarro la ultima
+        for (int i = 0; i < output.rows()-1; i = (i+1)*(k+1))
+        {
+            int iNext = (i+1)*(k+1);
+            //int jNext = j; // es la misma columna
+
+            // offset valores sin asignar entre valores ya asignados
+            for (int _i = 1; _i < (k+1); _i++)
+            {
+                int value = (output(iNext, j) - output(i,j)) * _i / (k+1) + output(i,j);
+                output(_i + i, j) = value;
+            }
+        } 
+    }
+
     // interpolamos por columnas entre puntos originales
-    for (int j=0; j < original.columns(); j++)
+    /*for (int j=0; j < original.columns(); j++)
     {
         int jNew = j*(k+1);
         for (int i = 0; i < original.rows()-1; i++)
@@ -62,7 +84,7 @@ void ZoomBilineal(const Matrix& original, Matrix& output, int k)
         // recorro todas las columnas, menos la primera y la ultima que ya fueron estimadas
         for (int _j=1; _j < output.columns()-1; _j++)
             output(i,_j) = (output(i,output.columns()-1) - output(i,0)) * _j / (k+1) + output(i,0);
-    }    
+    }*/    
 }
 
 void ZoomVecinosMasCercanos(const Matrix& input, Matrix& output, int k)
