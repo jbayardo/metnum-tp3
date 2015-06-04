@@ -47,9 +47,9 @@ void ZoomBilineal(const Matrix& original, Matrix& output, int k)
     {
         // recorro de la matriz output, las filas con puntos viejos, y las agarro de a pares.
         // Por eso no agarro la ultima
-        for (int i = 0; i < output.rows()-1; i = (i+1)*(k+1))
+        for (int i = 0; i < output.rows()-1; i = i+(k+1))
         {
-            int iNext = (i+1)*(k+1);
+            int iNext = i+(k+1);
             //int jNext = j; // es la misma columna
 
             // offset valores sin asignar entre valores ya asignados
