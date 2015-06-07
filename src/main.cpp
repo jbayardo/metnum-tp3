@@ -2,7 +2,7 @@
 #include "ItPixelesNuevos.h"
 //#include "Matrix.h"
 #include "Auxiliares.h"
-
+#include "TrazadorCubico.h"
 
 void calculoFrecuencia(const Matrix& m, int* frecuencias)
 {
@@ -13,6 +13,7 @@ void calculoFrecuencia(const Matrix& m, int* frecuencias)
             frecuencias[m(i, j)/ 16]++;
 
 }
+
 
 void ZoomBilineal(const Matrix& original, Matrix& output, int k)
 {
@@ -149,6 +150,19 @@ int main(int argc, char *argv[]) {
     // cuarto parametro: k
     // quinto parametro: modo de operación
 
+    vector<int> x;
+    x.push_back(3);
+    x.push_back(6);
+    x.push_back(9);
+    x.push_back(12);
+    vector<int> y;
+    y.push_back(150);
+    y.push_back(180);
+    y.push_back(100);
+    y.push_back(200);
+
+    TrazadorCubico tc(2, x, y);
+    
     if (argc < 5)
     {
         cout << "Te faltan parametros" << endl;
