@@ -150,7 +150,7 @@ int main(int argc, char *argv[]) {
     // cuarto parametro: k
     // quinto parametro: modo de operación
 
-    vector<int> x;
+    /*vector<int> x;
     x.push_back(3);
     x.push_back(6);
     x.push_back(9);
@@ -161,8 +161,17 @@ int main(int argc, char *argv[]) {
     y.push_back(100);
     y.push_back(200);
 
-    
+
     TrazadorCubico tc(2, x, y);
+
+    cout << tc.Evaluar(4) << endl;
+    cout << tc.Evaluar(5) << endl;
+
+    cout << tc.Evaluar(7) << endl;
+    cout << tc.Evaluar(8) << endl;
+
+    cout << tc.Evaluar(10) << endl;
+    cout << tc.Evaluar(11) << endl;*/
     
     if (argc < 5)
     {
