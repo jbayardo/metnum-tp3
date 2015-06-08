@@ -161,6 +161,7 @@ int main(int argc, char *argv[]) {
     y.push_back(100);
     y.push_back(200);
 
+    
     TrazadorCubico tc(2, x, y);
     
     if (argc < 5)

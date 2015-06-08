@@ -7,7 +7,7 @@ using namespace std;
 class TrazadorCubico
 {
 public:
-	TrazadorCubico(int _k, vector<int>& x_table, vector<int>& y_table) : k(_k), min_x(x_table[0]), x_values(x_table)
+	TrazadorCubico(int _k, vector<int>& x_table, vector<int>& y_table) : k(_k), min_x(x_table[0]), x_values(x_table), coeficientes(vector<vector<double> >(x_table.size()-1, vector<double>(COEFICIENTES_POL_CUBICO, 0.0)))
 	{
 		// TODO: Teniamos problemas para usar bien los constructores de vector
 		// TODO: Matrices como esta implementada no es double, y solo es de ints.
@@ -15,7 +15,6 @@ public:
 		// coeficientes(vector<double>(0.0, x_table.size()-1), COEFICIENTES_POL_CUBICO)
 
 		//coeficientes: Aca se almacenan los coeficientes de los splines
-
 		int n = x_table.size();
 
 		coeficientes.resize(n+1);
@@ -62,8 +61,7 @@ public:
 		vector<double> c_sol(n + 1, 0);
 		BackwardSubstituion(c_coef, b_sistema, c_sol);
 
-		
-		for (int i = 1; i <= n; i++)
+		for (int i = 0; i <= n; i++)
 		{
 			int hi = x_table[i+1] - x_table[i];
 			// el valor del a
@@ -101,7 +99,7 @@ private:
 	};
 	// Eliminacion optimizada para casos particulares, como el despeje de c
 	void EliminacionGaussiana(vector<vector<double> >& m, vector<double>& b);
-	void BackwardSubstituion(const vector< vector< double > >& m, const vector<double>& b, vector<double> sol);
+	void BackwardSubstituion(const vector< vector< double > >& m, const vector<double>& b, vector<double>& sol);
 	// cada fila son los coeficientes de un spline
 	vector< spline > coeficientes;
 	const int k;
