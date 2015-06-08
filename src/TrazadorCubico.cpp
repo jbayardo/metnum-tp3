@@ -10,7 +10,7 @@ void TrazadorCubico::EliminacionGaussiana(vector< vector < double > >& m, vector
 	}
 
 }
-void TrazadorCubico::BackwardSubstituion(const vector< vector < double > >& m, const vector<double>& b, vector<double> sol)
+void TrazadorCubico::BackwardSubstituion(const vector< vector < double > >& m, const vector<double>& b, vector<double>& sol)
 {
 	sol[0] = 0;
 	sol[m.size()-1] = 0;
@@ -31,7 +31,7 @@ int TrazadorCubico::Evaluar(int x)
 
 	int _x = (x - x_values[i]);
 
-	int res = coeficientes[i][0] + coeficientes[i][1] * _x + coeficientes[i][2] * pow(_x, 2) + coeficientes[i][3] * pow(_x, 3);
+	int res = coeficientes[i].a + coeficientes[i].b * _x + coeficientes[i].c * pow(_x, 2) + coeficientes[i].d * pow(_x, 3);
 
 	return res;
 }
