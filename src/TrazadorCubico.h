@@ -93,7 +93,7 @@ private:
 
 	// Eliminacion optimizada para casos particulares, como el despeje de c
 	void EliminacionGaussiana(vector<vector<double> >& m, vector<double>& b);
-	void BackwardSubstituion(const vector< vector< double > >& m, const vector<double>& b, vector<double> sol);
+	void BackwardSubstituion(const vector< vector< double > >& m, const vector<double>& b, vector<double>& sol);
 	// cada fila son los coeficientes de un spline
 	vector< vector<double> > coeficientes;
 	const int k;
