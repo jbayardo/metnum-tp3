@@ -4,6 +4,77 @@
 #include "Auxiliares.h"
 #include "TrazadorCubico.h"
 
+void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
+{
+    int bloquesEnUnaFila = (B-1)*(original.columns()-1);
+    int bloquesEnUnaColumna = (B-1)*(original.rows()-1);
+
+    for (int i = 0; i < bloquesEnUnaFila; i++)
+    {
+        for (int j = 0; j < bloquesEnUnaColumna; j++)
+        {
+            cout << "Bloqueeee!" << endl;
+            // dado un bloque quiero saber donde esta el primer vertice de este (en la imagen original)
+            int i_orig = i*(B-1);
+            int j_orig = j*(B-1);
+
+            // ahora lo transformamos al respectivo en la imagen aumentada.
+            i_orig *= (k+1);
+            j_orig *= (k+1);
+
+            // Un lado del bloque mide B pixeles en la original
+            // ¿Cuanto mide en la aumentada?
+            int B_zoom = (B-1)*k+B;
+            cout << "Bzoom " << B_zoom << endl;
+            // Primero vamos por filas con puntos viejos
+            for (int f = i_orig; f < i_orig+B_zoom; f = f + k+1)
+            {
+                // Genero mi tabla de valores por cada fila
+                vector<int> x_table;
+                vector<int> y_table;
+
+                for (int c = j_orig; c < j_orig+B_zoom; c = c+k+1)
+                {
+                    cout << c << endl;
+                    x_table.push_back(c);
+                    y_table.push_back(output(f,c));
+                }
+
+                // Puedo armarme el trazador cubico para esta fila del bloque.
+                TrazadorCubico tc(k, x_table, y_table);
+
+                // recorro los puntos de la fila que no tienen valores y estan entre viejos
+                for (int c = j_orig+1; c < (j_orig+B_zoom)-1; c=(c % (k+1) == k ? c+2 : c+1))
+                {
+                    cout << "EVALUE POL " << endl;   
+                    output(f,c) = tc.Evaluar(c);
+                }
+                    
+            }
+
+            // Ahora recorremos por columnas con puntos viejos.
+            for (int c = j_orig; c < j_orig+B_zoom; c = c+k+1)
+            {
+                vector<int> x_table;
+                vector<int> y_table;
+
+                for (int f = i_orig; f < i_orig+B_zoom; f = f + k+1)
+                {
+                    x_table.push_back(c);
+                    y_table.push_back(output(f,c));
+                }
+
+                TrazadorCubico tc(k, x_table, y_table);
+                for (int f = i_orig+1; f < i_orig+B_zoom-1; f=(f % (k+1) == k ? f+2 : f+1))
+                    output(f,c) = tc.Evaluar(c);
+            }
+
+            // TODO: Recorrer por las filas (o columnas) con todos puntos nuevos e interpolar.
+        }
+    }
+}
+
+
 void calculoFrecuencia(const Matrix& m, int* frecuencias)
 {
     //Armamos un array de 16 intervalos, que representan la frecuencia de los distintos rangos de valores de la intensidad
@@ -150,7 +221,7 @@ int main(int argc, char *argv[]) {
     // cuarto parametro: k
     // quinto parametro: modo de operación
 
-    /*vector<int> x;
+    vector<int> x;
     x.push_back(3);
     x.push_back(6);
     x.push_back(9);
@@ -171,7 +242,7 @@ int main(int argc, char *argv[]) {
     cout << tc.Evaluar(8) << endl;
 
     cout << tc.Evaluar(10) << endl;
-    cout << tc.Evaluar(11) << endl;*/
+    cout << tc.Evaluar(11) << endl;
     
     if (argc < 5)
     {
@@ -190,6 +261,7 @@ int main(int argc, char *argv[]) {
     columnas = stoi(argv[3]);
     k = stoi(argv[4]);
     op = stoi(argv[5]);
+    int B = op == 2 ? stoi(argv[6]) : 0;
 
     // Cargo la imagen como una matriz
     Matrix m(filas, columnas);
@@ -206,6 +278,9 @@ int main(int argc, char *argv[]) {
             break;
         case 1:
             ZoomBilineal(m,output,k);
+            break;
+        case 2:
+            ZoomSplines(m,output,k,B);
             break;
         default:
             cout << "MODO DE OPERACION NO DEFINIDO " << endl;
