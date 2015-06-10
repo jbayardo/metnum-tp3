@@ -12,7 +12,7 @@ public:
 		// TODO: Matrices como esta implementada no es double, y solo es de ints.
 		// 		Por eso usamos vector de vectores de double
 
-		vector< vector<double> > c_coef(x_table.size()+1, vector<double>(x_table.size()+1, 0.0));
+		vector< vector<double> > c_coef(x_table.size(), vector<double>(x_table.size(), 0.0));
 
 		c_coef[0][0] = 1.0;
 		c_coef[c_coef.size()-1][c_coef.size()-1] = 1.0;
@@ -27,10 +27,10 @@ public:
 			c_coef[i][i+1] = hi;
 		}
 
-		vector<double> b_sistema(x_table.size()+1, 0.0);
+		vector<double> b_sistema(x_table.size(), 0.0);
 	
 		b_sistema[0] = 0.0;
-		b_sistema[x_table.size()] = 0.0;
+		b_sistema[b_sistema.size()-1] = 0.0;
 
 		for (int i = 1; i < b_sistema.size()-1; i++)
 		{
@@ -41,7 +41,7 @@ public:
 		}
 
 		EliminacionGaussiana(c_coef,b_sistema);
-		vector<double> c_sol(x_table.size()+1,0.0);
+		vector<double> c_sol(x_table.size(),0.0);
 		BackwardSubstituion(c_coef, b_sistema, c_sol);
 
 		for (int i = 0; i < coeficientes.size(); i++)
