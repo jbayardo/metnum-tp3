@@ -13,7 +13,7 @@ void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
     {
         for (int j = 0; j < bloquesEnUnaColumna; j++)
         {
-            cout << "Bloqueeee!" << endl;
+            //cout << "Bloqueeee!" << endl;
             // dado un bloque quiero saber donde esta el primer vertice de este (en la imagen original)
             int i_orig = i*(B-1);
             int j_orig = j*(B-1);
@@ -25,7 +25,7 @@ void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
             // Un lado del bloque mide B pixeles en la original
             // ¿Cuanto mide en la aumentada?
             int B_zoom = (B-1)*k+B;
-            cout << "Bzoom " << B_zoom << endl;
+            //cout << "Bzoom " << B_zoom << endl;
             // Primero vamos por filas con puntos viejos
             for (int f = i_orig; f < i_orig+B_zoom; f = f + k+1)
             {
@@ -35,7 +35,7 @@ void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
 
                 for (int c = j_orig; c < j_orig+B_zoom; c = c+k+1)
                 {
-                    cout << c << endl;
+                    //cout << c << endl;
                     x_table.push_back(c);
                     y_table.push_back(output(f,c));
                 }
@@ -46,7 +46,7 @@ void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
                 // recorro los puntos de la fila que no tienen valores y estan entre viejos
                 for (int c = j_orig+1; c < (j_orig+B_zoom)-1; c=(c % (k+1) == k ? c+2 : c+1))
                 {
-                    cout << "EVALUE POL " << endl;   
+                    //cout << "EVALUE POL " << endl;   
                     output(f,c) = tc.Evaluar(c);
                 }
                     
@@ -60,16 +60,53 @@ void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
 
                 for (int f = i_orig; f < i_orig+B_zoom; f = f + k+1)
                 {
-                    x_table.push_back(c);
+                    x_table.push_back(f);
                     y_table.push_back(output(f,c));
                 }
 
                 TrazadorCubico tc(k, x_table, y_table);
                 for (int f = i_orig+1; f < i_orig+B_zoom-1; f=(f % (k+1) == k ? f+2 : f+1))
-                    output(f,c) = tc.Evaluar(c);
+                    output(f,c) = tc.Evaluar(f);
             }
 
             // TODO: Recorrer por las filas (o columnas) con todos puntos nuevos e interpolar.
+
+            // Elegimos ir por filas con nuevos.
+
+
+            // hago k movimientos seguidos, luego salto 2
+            int pasosFilas = k;
+            int f = i_orig+1;
+            while (f < i_orig+B_zoom-1)
+            {   
+                vector<int> x_table;
+                vector<int> y_table;
+
+                // Genero spline para esta fila, recorro columnas ya interpoladas
+                for (int c = j_orig; c < j_orig+B_zoom; c = c+k+1)
+                {
+                    //cout << c << endl;
+                    x_table.push_back(c);
+                    y_table.push_back(output(f,c));
+                }
+
+                TrazadorCubico tc(k, x_table, y_table);
+
+                int c = j_orig+1;
+                int pasosColumnas = k;
+                while (c < j_orig+B_zoom-1)
+                {
+
+                    output(f,c) = tc.Evaluar(c);
+                    pasosColumnas--;
+                    c = pasosColumnas == 0 ? c+2 : c+1;
+                }
+
+                --pasosFilas;
+                f = pasosFilas == 0 ? f+2 : f+1;
+                pasosFilas = pasosFilas == 0 ? k : pasosFilas;
+            }
+
         }
     }
 }
@@ -221,29 +258,6 @@ int main(int argc, char *argv[]) {
     // cuarto parametro: k
     // quinto parametro: modo de operación
 
-    vector<int> x;
-    x.push_back(3);
-    x.push_back(6);
-    x.push_back(9);
-    x.push_back(12);
-    vector<int> y;
-    y.push_back(150);
-    y.push_back(180);
-    y.push_back(100);
-    y.push_back(200);
-
-
-    TrazadorCubico tc(2, x, y);
-
-    cout << tc.Evaluar(4) << endl;
-    cout << tc.Evaluar(5) << endl;
-
-    cout << tc.Evaluar(7) << endl;
-    cout << tc.Evaluar(8) << endl;
-
-    cout << tc.Evaluar(10) << endl;
-    cout << tc.Evaluar(11) << endl;
-    
     if (argc < 5)
     {
         cout << "Te faltan parametros" << endl;

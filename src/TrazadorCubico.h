@@ -58,8 +58,8 @@ public:
 		}
 
 		// DEBUG
-		for (int i = 0; i < coeficientes.size(); i++)
-			coeficientes[i].Imprimir();
+		//for (int i = 0; i < coeficientes.size(); i++)
+		//	coeficientes[i].Imprimir();
 	}
 
 	// evaluar en numero de columna de imagen aumentada, el normaliza solito.
