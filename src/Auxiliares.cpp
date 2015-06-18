@@ -29,5 +29,19 @@ void loadImage(Matrix& m, const string& s)
 int norma1(int i, int j, int ki, int kj)
 {
     return abs(i - ki) + abs(j - kj);
+}
 
+// Toma la imagen original y una copia de ella (mismo tamaño)
+// Modifica la de output y le pone 0 en los lugares que serian los pixeles aumentados para un k dado
+void reducir(const Matrix& input, Matrix& output, int k)
+{
+    ItPixelesNuevos it(output.rows(), output.columns(), k);
+    while(!it.end())
+    {
+        int i = it.get().first;
+        int j = it.get().second;
+
+        output(i,j) = 0;
+        ++it;
+    }
 }
