@@ -36,7 +36,35 @@
 \pagebreak
 %\newpage
 
-\section*{Introducción Teórica}{}
+\section{Introducción Teórica}
+
+Sea una función $F: \mathbb{R} \to \mathbb{R}$ desconocida, y un conjunto de datos $D = \{(x_0, F(x_0)), ..., (x_{n-1}, F(x_{n-1}))\} \subset \mathbb{R}^2$. Supongamos que precisamos interpolar a $F$ por una función $f: [x_0, x_{n-1}] \to \mathbb{R}$. Concretamente, buscamos que $f(x_i) = F(x_i) \forall i \in \{0, .., n-1\}$; además, buscamos que $f$ de alguna forma logre generalizar bien, que logre parecerse a $F$ inclusive cuando la evaluemos en nuevos puntos que no estén en $D$. En la teórica vimos varios métodos para poder encontrar esta $f$ de forma tal que cumpla distintas propiedades según la metodología, pero en este trabajo nos limitaremos a utilizar dos de las vistas: la interpolación lineal, y la interpolación por splines.
+
+\includegraphics{LinearInterpolation.png}
+
+El primero de estos métodos, la interpolación lineal, consiste en ampliar la clásica idea de buscar una recta que interpole a dos puntos: supongamos que tenemos dos puntos $\{(x_0, y_0), (x_1, y_1)\}$, entonces, y si suponemos que la relación entre ellos es $y(x) = mx + b$, podemos encontrar $m = \frac{y_1 - y_0}{x_1 - x_0}$ y $b = y_0 - m x_0$ como la única recta que pasa por ambos puntos. Supongamos, entonces, que tenemos nuestro conjunto $D$ descripto anteriormente, y tomamos la función
+
+$$f(x) = \sum_{i=0}^{n-2} g_{x_i, x_{i+1}}(x) I_\[x_i, x_{i+1}\)(x)$$
+
+Donde tenemos a $g$ como la función que evalúa a $x$ en la recta que interpola a $x_i$ con $x_{i+1}$:
+
+$$g_{x_i, x_{i+1}}(x) = \frac{F(x_{i+1}) - F(x_i)}{x_{i+1} - x_i} (x - x_i) + y_i$$
+
+Y a $I$ como la función indicadora, que dado un conjunto $A$:
+
+$$I_C(x) =
+    \begin{cases}
+        1 & \quad \iff x \in A\\
+        0 & \quad \text{caso contrario}
+    \end{cases}$$
+    
+Observemos que la función $f$ descripta toma el valor de la recta que interpola a $x_i$ con $x_{i+1}$ en los puntos que pertenecen al intervalo correspondiente. A modo de ejemplo, si tomásemos $F(x) = sin(x)$ con un cierto conjunto de datos $D$, tendríamos una $f$ de la forma:
+
+\includegraphics{LinearInterpolationSine.png}
+
+Observemos, además, que cuantos más puntos tengamos, mejor va a ser la aproximación a la función final $F$
+
+\section{Desarrollo}
 
 $\ $ $\ $ $\ $ $\ $Implementamos tres métodos para hacer "zoom" de imágenes: vecino más cercano, interpolación bilineal, e interpolación por splines. En principio, el programa toma por parámetro una imagen en escala de grises $A \in \mathbb{Z}_{256}^{m \times n}$ y un factor $k \in \mathbb{N}_{>0}$ que indica cuánto extenderemos la imagen; concretamente, definimos una familia de transformaciones $f_k : \mathbb{Z}_{256}^{m \times n} \to \mathbb{Z}_{256}^{(k+1)(m-1)+1 \times (k+1)(n-1)+1}$ tal que:
 
