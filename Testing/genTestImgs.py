@@ -4,7 +4,6 @@ import matplotlib.pyplot as pyplot
 import os
 import sys
 import re
-import os
 from os.path import basename
 from numpy import mean
 import shutil

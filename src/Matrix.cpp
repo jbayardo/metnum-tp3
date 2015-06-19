@@ -12,10 +12,10 @@ Matrix::Matrix(int N, int M)
         throw new std::out_of_range("Invalid matrix dimension");
     }
 
-    std::cerr << "Creando matriz de " << this->rows() << "x" << this->columns() << std::endl;
+    std::cout << "Creando matriz de " << this->rows() << "x" << this->columns() << std::endl;
 
     if (this->matrix.size() > 0) {
-        std::cerr << "Dimensiones del vector de salida: " << this->matrix.size() << "x" << this->matrix[0].size() << std::endl;
+        std::cout << "Dimensiones del vector de salida: " << this->matrix.size() << "x" << this->matrix[0].size() << std::endl;
     }
 }
 

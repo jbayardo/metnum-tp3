@@ -3,6 +3,7 @@
 //#include "Matrix.h"
 #include "Auxiliares.h"
 #include "TrazadorCubico.h"
+#include <chrono>
 
 void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
 {
@@ -252,30 +253,33 @@ void ZoomVecinosMasCercanos(const Matrix& input, Matrix& output, int k)
 
 int main(int argc, char *argv[]) {
 
-    // primer parametro: path a la imagen a procesar
-    // segundo parametro: altura de la imagen (pixeles)
-    // tercer parametro: ancho de la imagen (pixeles)
-    // cuarto parametro: k
-    // quinto parametro: modo de operación
+    // arg[1]: path a la imagen a procesar
+    // arg[2]: path output
+    // arg[3]: altura de la imagen (pixeles)
+    // arg[4]: ancho de la imagen (pixeles)
+    // arg[5]: k
+    // arg[6]: modo de operación
+    // arg[7]: tamaño bloque
 
-    if (argc < 5)
+
+    if (argc < 6)
     {
-        cout << "Te faltan parametros" << endl;
+        //cout << "Te faltan parametros" << endl;
         return 1;
     }
 
     cout << "Imagen: " << argv[1] << std::endl;
-    cout << "Filas: " << argv[2] << std::endl;
-    cout << "Columnas: " << argv[3] << std::endl;
-    cout << "Zoom: " << argv[4] << std::endl;
-    cout << "Modo de operación: " << argv[5] << std::endl;
+    cout << "Filas: " << argv[3] << std::endl;
+    cout << "Columnas: " << argv[4] << std::endl;
+    cout << "Zoom: " << argv[5] << std::endl;
+    cout << "Modo de operación: " << argv[6] << std::endl;
 
     int filas, columnas, k, op;
-    filas = stoi(argv[2]);
-    columnas = stoi(argv[3]);
-    k = stoi(argv[4]);
-    op = stoi(argv[5]);
-    int B = op == 2 ? stoi(argv[6]) : 0;
+    filas = stoi(argv[3]);
+    columnas = stoi(argv[4]);
+    k = stoi(argv[5]);
+    op = stoi(argv[6]);
+    int B = op == 2 ? stoi(argv[7]) : 0;
 
     // Cargo la imagen como una matriz
     Matrix m(filas, columnas);
@@ -284,6 +288,8 @@ int main(int argc, char *argv[]) {
     // con este constructor generamos la matriz para la imagen aumentada
     // y traspasamos los puntos ya conocidos
     Matrix output(m, k);
+    
+    chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 
     switch(op)
     {
@@ -298,11 +304,14 @@ int main(int argc, char *argv[]) {
             break;
         default:
             cout << "MODO DE OPERACION NO DEFINIDO " << endl;
+            break;
     }
+    chrono::high_resolution_clock::time_point t2 = chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
     
+    output.writeMatrix(argv[2]);
 
-    output.writeMatrix("output.csv");
-
+    cout << "TESTDATA=." << duration << ".";
     return 0;
 }
 

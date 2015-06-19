@@ -6,6 +6,9 @@ from numpy import mean
 import shutil
 import commands
 import subprocess
+import numpy as np
+import Image
+import matplotlib.pyplot as pyplot
 
 NEAREST = 0
 BILINEAL = 1
@@ -15,35 +18,64 @@ testimgsfoldersub = './testimgs/TESTSET-'
 testimgsfoldname = 'TESTSET-'
 
 outpdir = "./testresults/"
+
 def main():
   if not os.path.exists(outpdir):
     os.makedirs(outpdir)
+  for testset in testsets:
+    processknn(testset)
 
 def trimmean(arr, percent):
     n = len(arr)
     k = int(round(n*(float(percent)/100)/2))
     return mean(arr[k+1:n-k])
 
-def processblur(testset):
-    ou = open(outpdir + "blur-"+ testset + ".csv", "w")
+def processknn(testset):
+    print "testset:", testset ######################################3
+    
+    ou = open(outpdir + "data-knn-" + testset + ".csv", "w")
     listfile = getfiles(testimgsfoldersub + testset + "/")
-    done = 0
+
+    origdata = getorig(testimgsfoldersub + testset + "/").split('-')
+    origw = int(origdata[2])
+    origh = int(origdata[3].split('.')[0])
+    origset = origdata[1]
+    
+    print "origdata",origdata ######################################3
+    
+    outdirset = outpdir + testimgsfoldname + origset + "/"
+    if not os.path.exists(outdirset):
+      os.makedirs(outdirset)
+    
+    print "outdirset:", outdirset ######################################3
+    
     #Para cada imagen de prueba
     for filen in listfile:
-      done++
       imgdata = filen.split('-')
+      print "    ", "filen:",filen, "imgdata:", imgdata, ######################################3
 
-      imgw = imgdata[2]
-      imgh = imgdata[3].split('.')[0]
+      imgw = int(imgdata[2])
+      imgh = int(imgdata[3].split('.')[0])
       imgset = imgdata[1]
 
+      if imgset != origset: continue
+      kw = (origw - imgw) / imgw
+      kh = (origh - imgh) / imgh
+      if kw != kh: continue
+      print "kw:", str(kw), "kh:" , str(kh), "OutName:", "testRes-" + testset + "-" + str(imgw) + "-" + str(imgh) ######################################3
 
+      outputfile = outdirset + "testRes-" + testset + "-" + str(imgw) + "-" + str(imgh) 
 
-      time = int(subprocess.check_output(["./tp", testimgsfoldersub + testset + "/" + filen, "n", str(0)]))
+      #time = int(subprocess.check_output(["./tp", testimgsfoldersub + testset + "/" + filen, outputfile + ".csv" ,  str(imgh), str(imgw), str(kw) , str(0)]))
+      ou = subprocess.check_output(["./tp", testimgsfoldersub + testset + "/" + filen, outputfile + ".csv" ,  str(imgh), str(imgw), str(kw) , str(0)]).splitlines()
+      time = ou[len(ou)-1].split('.')[1]
       
-      ou.write(imgset + ',' + imgw + ',' imgh + ', knn' + ',' + time + "\n")
+      #csv = np.genfromtxt (outputfile + ".csv", delimiter=",", dtype=np.uint8)
+      #Image.fromarray(csv, 'L').save(outputfile + ".bmp")
+      
+      ou.write(imgset + ',' + str(imgw) + ',' + str(imgh) + ', knn' + ',' + str(time) + "\n")
 
-      print("knn[]: TESTSET=" + testset + " IMG=" + filen)
+      #print("knn[]: TESTSET=" + testset + " IMG=" + filen)
     ou.close()
 
 def getfiles(dir):

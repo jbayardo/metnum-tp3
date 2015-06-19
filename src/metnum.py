@@ -4,11 +4,13 @@ from scripts.fabricate import *
 from scripts.settings import *
 from scripts.utils import listfiles
 from sys import argv
+import shutil
 
 # Acciones
 def build():
   compile()
   link()
+  shutil.copyfile("./tp", "../Testing/tp")
 
 def compile():
   for source in sources:
