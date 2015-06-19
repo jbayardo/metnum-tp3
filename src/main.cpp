@@ -7,8 +7,9 @@
 
 void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
 {
-    int bloquesEnUnaFila = (B-1)*(original.columns()-1);
-    int bloquesEnUnaColumna = (B-1)*(original.rows()-1);
+    // revisar mas
+    int bloquesEnUnaFila = B == 2 ? original.columns()-1 : (original.columns())/(B-1);
+    int bloquesEnUnaColumna = B == 2 ? original.rows()-1 : (original.rows())/(B-1);
 
     for (int i = 0; i < bloquesEnUnaFila; i++)
     {
@@ -274,12 +275,15 @@ int main(int argc, char *argv[]) {
     cout << "Zoom: " << argv[5] << std::endl;
     cout << "Modo de operación: " << argv[6] << std::endl;
 
+
     int filas, columnas, k, op;
     filas = stoi(argv[3]);
     columnas = stoi(argv[4]);
     k = stoi(argv[5]);
     op = stoi(argv[6]);
     int B = op == 2 ? stoi(argv[7]) : 0;
+
+    cout << "B: " << B << std::endl;
 
     // Cargo la imagen como una matriz
     Matrix m(filas, columnas);
