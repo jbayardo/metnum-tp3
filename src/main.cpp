@@ -6,8 +6,11 @@
 
 void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
 {
-    int bloquesEnUnaFila = (B-1)*(original.columns()-1);
-    int bloquesEnUnaColumna = (B-1)*(original.rows()-1);
+    //int bloquesEnUnaFila = (B-1)*(original.columns()-1);
+    //int bloquesEnUnaColumna = (B-1)*(original.rows()-1);
+
+    int bloquesEnUnaFila = (original.columns()+1)/B;
+    int bloquesEnUnaColumna = (original.rows()+1)/B;
 
     for (int i = 0; i < bloquesEnUnaFila; i++)
     {
