@@ -8,6 +8,7 @@ import commands
 import subprocess
 import numpy as np
 import Image
+import math
 import matplotlib.pyplot as pyplot
 
 NEAREST = 0
@@ -35,13 +36,16 @@ def processknn(testset):
     print "testset:", testset ######################################3
     
     ou = open(outpdir + "data-knn-" + testset + ".csv", "w")
-    ou.write("imgset, ancho, altura, tipo de zoom, k, tamaniobloque, tiempo de computo, error1, error2" + "\n")
+    ou.write("imgset, ancho, altura, tipo de zoom, k, tamaniobloque, tiempo de computo, errorECM, errorPSNR" + "\n")
     listfile = getfiles(testimgsfoldersub + testset + "/")
 
-    origdata = getorig(testimgsfoldersub + testset + "/").split('-')
+    origfname = getorig(testimgsfoldersub + testset + "/")
+    origdata = origfname.split('-')
     origw = int(origdata[2])
     origh = int(origdata[3].split('.')[0])
     origset = origdata[1]
+    origfile = testimgsfoldersub + testset + "/" + origfname
+
     
     print "origdata",origdata ######################################3
     
@@ -70,8 +74,8 @@ def processknn(testset):
 
       outputTP = subprocess.check_output(["./tp", testimgsfoldersub + testset + "/" + filen, outputfile + ".csv" ,  str(imgh), str(imgw), str(kw) , str(0)]).splitlines()
       time = outputTP[len(outputTP)-1].split('.')[1]
-      err1 = error1(testimgsfoldersub + testset + "/" + filen, outputfile + "csv")
-      err2 = error2(testimgsfoldersub + testset + "/" + filen, outputfile + "csv")
+      err1 = errorECM(origfile, outputfile + ".csv", origh, origw)
+      err2 = errorPSNR(origfile, outputfile + ".csv", origh, origw)
       #csv = np.genfromtxt (outputfile + ".csv", delimiter=",", dtype=np.uint8)
       #Image.fromarray(csv, 'L').save(outputfile + ".bmp")
       
@@ -83,14 +87,16 @@ def processbilinear(testset):
     print "testset:", testset ######################################3
     
     ou = open(outpdir + "data-bilineal-" + testset + ".csv", "w")
-    ou.write("imgset, ancho, altura, tipo de zoom, k, tamaniobloque, tiempo de computo, error1, error2" + "\n")
+    ou.write("imgset, ancho, altura, tipo de zoom, k, tamaniobloque, tiempo de computo, errorECM, errorPSNR" + "\n")
     listfile = getfiles(testimgsfoldersub + testset + "/")
 
-    origdata = getorig(testimgsfoldersub + testset + "/").split('-')
+    origfname = getorig(testimgsfoldersub + testset + "/")
+    origdata = origfname.split('-')
     origw = int(origdata[2])
     origh = int(origdata[3].split('.')[0])
     origset = origdata[1]
-    
+    origfile = testimgsfoldersub + testset + "/" + origfname
+
     print "origdata",origdata ######################################3
     
     outdirset = outpdir + testimgsfoldname + origset + "/"
@@ -118,9 +124,8 @@ def processbilinear(testset):
 
       outputTP = subprocess.check_output(["./tp", testimgsfoldersub + testset + "/" + filen, outputfile + ".csv" ,  str(imgh), str(imgw), str(kw) , str(1)]).splitlines()
       time = outputTP[len(outputTP)-1].split('.')[1]
-      err1 = error1(testimgsfoldersub + testset + "/" + filen, outputfile + "csv")
-      err2 = error2(testimgsfoldersub + testset + "/" + filen, outputfile + "csv")
-      
+      err1 = errorECM(origfile, outputfile + ".csv", origh, origw)
+      err2 = errorPSNR(origfile, outputfile + ".csv", origh, origw)
       #csv = np.genfromtxt (outputfile + ".csv", delimiter=",", dtype=np.uint8)
       #Image.fromarray(csv, 'L').save(outputfile + ".bmp")
       
@@ -131,14 +136,16 @@ def processcubic(testset):
     print "testset:", testset ######################################3
     
     ou = open(outpdir + "data-cubic-" + testset + ".csv", "w")
-    ou.write("imgset, ancho, altura, tipo de zoom, k, tamaniobloque, tiempo de computo, error1, error2" + "\n")
+    ou.write("imgset, ancho, altura, tipo de zoom, k, tamaniobloque, tiempo de computo, errorECM, errorPSNR" + "\n")
     listfile = getfiles(testimgsfoldersub + testset + "/")
 
-    origdata = getorig(testimgsfoldersub + testset + "/").split('-')
+    origfname = getorig(testimgsfoldersub + testset + "/")
+    origdata = origfname.split('-')
     origw = int(origdata[2])
     origh = int(origdata[3].split('.')[0])
     origset = origdata[1]
-    
+    origfile = testimgsfoldersub + testset + "/" + origfname
+
     print "origdata",origdata ######################################3
     
     outdirset = outpdir + testimgsfoldname + origset + "/"
@@ -169,9 +176,8 @@ def processcubic(testset):
 
         outputTP = subprocess.check_output(["./tp", testimgsfoldersub + testset + "/" + filen, outputfile + ".csv" ,  str(imgh), str(imgw), str(kw) , str(1), str(b)]).splitlines()
         time = outputTP[len(outputTP)-1].split('.')[1]
-        err1 = error1(testimgsfoldersub + testset + "/" + filen, outputfile + "csv")
-        err2 = error2(testimgsfoldersub + testset + "/" + filen, outputfile + "csv")
-
+        err1 = errorECM(origfile, outputfile + ".csv", origh, origw)
+        err2 = errorPSNR(origfile, outputfile + ".csv", origh, origw)
         #csv = np.genfromtxt (outputfile + ".csv", delimiter=",", dtype=np.uint8)
         #Image.fromarray(csv, 'L').save(outputfile + ".bmp")
         
@@ -188,11 +194,20 @@ def getfiles(dir):
 
   return sorted(res)  
 
-def error1(origimg, processedimg):
-  return 0
+def errorECM(origimg, processedimg, m, n):
+  res = 0
+  orig = np.genfromtxt(origimg, delimiter=",", dtype=np.uint8)
+  new = np.genfromtxt(processedimg, delimiter=",", dtype=np.uint8)
+  print orig.shape, new.shape, m, n
+  for i in range(0,m):
+    for j in range(0,n):
+      res += math.pow(abs(orig[i][j]-new[i][j]),2)
+  res /= m*n
+  return res
 
-def error2(origimg, processedimg):
-  return 0
+def errorPSNR(origimg, processedimg, m, n):
+  res = 10*(math.log10(((math.pow(255, 2))/errorECM(origimg, processedimg, m, n))))
+  return res
 
 def getorig(dir):
   for filen in os.listdir(dir):
