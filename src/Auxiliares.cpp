@@ -43,8 +43,8 @@ Matrix* reducir(const Matrix& input, int k)
     // nos basamos en la relacion
     // fila de la aumentada = fila de la original * (k+1)
     // calculo la posicion de la ultima fila, y le aumento en uno asi obtengo el size de la fila
-    int f = ((input.columns()-1) / (k+1) ) + 1;
-    int c = ((input.rows()-1) / (k+1)) + 1;
+    int f = ((input.rows()-1) / (k+1) ) + 1;
+    int c = ((input.columns()-1) / (k+1)) + 1;
     Matrix *small = new Matrix(f, c);
 
     for (int i = 0; i < input.rows(); i = i + k+1)
