@@ -71,10 +71,7 @@ void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
                     output(f,c) = tc.Evaluar(f);
             }
 
-            // TODO: Recorrer por las filas (o columnas) con todos puntos nuevos e interpolar.
-
             // Elegimos ir por filas con nuevos.
-
 
             // hago k movimientos seguidos, luego salto 2
             int pasosFilas = k;
@@ -260,8 +257,12 @@ int main(int argc, char *argv[]) {
     // arg[4]: ancho de la imagen (pixeles)
     // arg[5]: k
     // arg[6]: modo de operación
-    // arg[7]: tamaño bloque
+    // arg[7]: tamaño bloque (solo para Splines)
 
+    /********* MODOS DE OPERACION ********/
+    /* 0 - Zoom por KNN
+     * 1 - Zoom por interpolacion lineal
+     * 2 - Zoom por splines */
 
     if (argc < 6)
     {
@@ -306,10 +307,20 @@ int main(int argc, char *argv[]) {
         case 2:
             ZoomSplines(m,output,k,B);
             break;
+        //case 3: // Modo de reducción
+        //{
+            /* Matrix output(*reduced, k);
+             B= 16;
+             ZoomSplines(*reduced, output, k, B);
+             //ZoomBilineal(*reduced,output,k);
+
+             free(reduced);*/
+        //}
         default:
             cout << "MODO DE OPERACION NO DEFINIDO " << endl;
             break;
     }
+
     chrono::high_resolution_clock::time_point t2 = chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
     
