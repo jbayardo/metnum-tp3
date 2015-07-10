@@ -352,7 +352,7 @@ int main(int argc, char *argv[]) {
             // no tiene sentido usar bloques mayores a una imagen.
             assert(filas >= B);
             bool proporcionalidad = (filas-1) % (k+1) == 0;
-            // le estas dando un k con el que jamas se podria conseguir la imagen original
+            // le estas dando un k con el que jamas se podria conseguir la imagen original desde la reducida
             assert(proporcionalidad);
             // reduce lo original usando k
             Matrix* reduced = reducir(m, k);
@@ -364,6 +364,10 @@ int main(int argc, char *argv[]) {
         }
         case TEST_KNN: // Modo de reducción
         {
+            bool proporcionalidad = (filas-1) % (k+1) == 0;
+            // le estas dando un k con el que jamas se podria conseguir la imagen original desde la reducida
+            assert(proporcionalidad);
+
             // reduce lo original usando k
             Matrix* reduced = reducir(m, k);
             // La volvemos a aumentar con k
@@ -374,6 +378,9 @@ int main(int argc, char *argv[]) {
         }
         case TEST_BILINEAL: // Modo de reducción
         {
+            bool proporcionalidad = (filas-1) % (k+1) == 0;
+            // le estas dando un k con el que jamas se podria conseguir la imagen original desde la reducida
+            assert(proporcionalidad);
             // reduce lo original usando k
             Matrix* reduced = reducir(m, k);
             // La volvemos a aumentar con k
