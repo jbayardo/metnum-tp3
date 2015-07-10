@@ -4,22 +4,50 @@
 #include "Auxiliares.h"
 #include "TrazadorCubico.h"
 #include <chrono>
+#include <assert.h>     /* assert */
+
+enum ZOOM
+{
+    ZOOM_KNN = 0,
+    ZOOM_BILINEAL = 1,
+    ZOOM_SPLINES = 2,
+    TEST_KNN = 3,
+    TEST_BILINEAL = 4,
+    TEST_SPLINES = 5
+};
 
 void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
 {
-    // revisar mas
-    int bloquesEnUnaFila = B == 2 ? original.columns()-1 : (original.columns())/(B-1);
-    int bloquesEnUnaColumna = B == 2 ? original.rows()-1 : (original.rows())/(B-1);
-
-    for (int i = 0; i < bloquesEnUnaFila; i++)
+    for (int i = 0; i < original.rows(); i = i+(B-1))
     {
-        for (int j = 0; j < bloquesEnUnaColumna; j++)
+        //for (int j = 0; j < bloquesEnUnaColumna; j++)
+        for (int j = 0; j < original.columns(); j = j+(B-1))
         {
-            //cout << "Bloqueeee!" << endl;
-            // dado un bloque quiero saber donde esta el primer vertice de este (en la imagen original)
-            int i_orig = i*(B-1);
-            int j_orig = j*(B-1);
+            // (i,j) representan el vertice superior izquierdo de un bloque en una imagen, en su matriz original
+            // El algoritmo va a trabajar con esos bloques mientras pueda.
+            // Si para el ultimo no le alcanzan los pixeles, agarra pixeles anteriores para terminar el ultimo bloque
+            // Los vuelve a procesar
+            // Nada mas debemos experimentar con B=4 y B
 
+            int i_orig = i;
+            int j_orig = j;
+
+            // Verificamos si es el ultimo caso.
+            if (i_orig+(B-1) >= original.rows())
+            {
+                int cuantosPuedoTomar = (original.rows()-1)-i_orig;
+                int necesitados = B - (cuantosPuedoTomar+1); // +1 porque consideramos el i
+
+                i_orig = i_orig - necesitados;
+            }
+
+            if (j_orig+(B-1) >= original.columns())
+            {
+                int cuantosPuedoTomar = (original.columns()-1)-j_orig;
+                int necesitados = B - (cuantosPuedoTomar+1); // +1 porque consideramos el i
+
+                j_orig = j_orig - necesitados;
+            }
             // ahora lo transformamos al respectivo en la imagen aumentada.
             i_orig *= (k+1);
             j_orig *= (k+1);
@@ -262,7 +290,13 @@ int main(int argc, char *argv[]) {
     /********* MODOS DE OPERACION ********/
     /* 0 - Zoom por KNN
      * 1 - Zoom por interpolacion lineal
-     * 2 - Zoom por splines */
+     * 2 - Zoom por splines
+     * 3 - Test Zoom Knn
+     * 4 - Test Zoom Bilineal
+     * 5 - Test Zoom Splines
+     * Los modos de test agarran una imagen original, la reducen con el k indicado y la vuelven a agrandar.
+     * Tener en cuenta que cualquier K NO ES VALIDO.
+     * */
 
     if (argc < 6)
     {
@@ -282,7 +316,10 @@ int main(int argc, char *argv[]) {
     columnas = stoi(argv[4]);
     k = stoi(argv[5]);
     op = stoi(argv[6]);
-    int B = op == 2 ? stoi(argv[7]) : 0;
+    int B = (op == ZOOM_SPLINES || op == TEST_SPLINES) ? stoi(argv[7]) : 0;
+
+    // Solo trabajamos con imagenes cuadradas
+    assert(filas == columnas);
 
     cout << "B: " << B << std::endl;
 
@@ -292,40 +329,71 @@ int main(int argc, char *argv[]) {
 
     // con este constructor generamos la matriz para la imagen aumentada
     // y traspasamos los puntos ya conocidos
-    Matrix output(m, k);
+    Matrix* output = NULL;
     
     chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-
+    // No todos los modos utilizan el mismo tipo de matriz output.
     switch(op)
     {
-        case 0:
-            ZoomVecinosMasCercanos(m,output,k);
+        case ZOOM_KNN:
+            output = new Matrix(m, k);
+            ZoomVecinosMasCercanos(m,*output,k);
             break;
-        case 1:
-            ZoomBilineal(m,output,k);
+        case ZOOM_BILINEAL:
+            output = new Matrix(m, k);
+            ZoomBilineal(m,*output,k);
             break;
-        case 2:
-            ZoomSplines(m,output,k,B);
+        case ZOOM_SPLINES:
+            output = new Matrix(m, k);
+            ZoomSplines(m,*output,k,B);
             break;
-        //case 3: // Modo de reducción
-        //{
-            /* Matrix output(*reduced, k);
-             B= 16;
-             ZoomSplines(*reduced, output, k, B);
-             //ZoomBilineal(*reduced,output,k);
-
-             free(reduced);*/
-        //}
+        case TEST_SPLINES: // Modo de reducción
+        {
+            // no tiene sentido usar bloques mayores a una imagen.
+            assert(filas >= B);
+            bool proporcionalidad = (filas-1) % (k+1) == 0;
+            // le estas dando un k con el que jamas se podria conseguir la imagen original
+            assert(proporcionalidad);
+            // reduce lo original usando k
+            Matrix* reduced = reducir(m, k);
+            // La volvemos a aumentar con k
+            output = new Matrix(*reduced, k);
+            ZoomSplines(*reduced, *output, k, B);
+            free(reduced);
+            break;
+        }
+        case TEST_KNN: // Modo de reducción
+        {
+            // reduce lo original usando k
+            Matrix* reduced = reducir(m, k);
+            // La volvemos a aumentar con k
+            output = new Matrix(*reduced, k);
+            ZoomVecinosMasCercanos(*reduced,*output,k);
+            free(reduced);
+            break;
+        }
+        case TEST_BILINEAL: // Modo de reducción
+        {
+            // reduce lo original usando k
+            Matrix* reduced = reducir(m, k);
+            // La volvemos a aumentar con k
+            output = new Matrix(*reduced, k);
+            ZoomBilineal(*reduced,*output,k);
+            free(reduced);
+            break;
+        }
         default:
             cout << "MODO DE OPERACION NO DEFINIDO " << endl;
+            assert(false);
             break;
     }
 
     chrono::high_resolution_clock::time_point t2 = chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
-    
-    output.writeMatrix(argv[2]);
 
+    output->writeMatrix(argv[2]);
+
+    free(output);
     cout << "TESTDATA=." << duration << ".";
     return 0;
 }
