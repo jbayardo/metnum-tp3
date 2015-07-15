@@ -1,10 +1,9 @@
 import numpy as np
-import matplotlib
-import matplotlib.pyplot as plt
 import os
 import re
 import pandas as pd
 import math
+
 
 def fromSTRToNumpy(data):
     output = []
@@ -14,16 +13,23 @@ def fromSTRToNumpy(data):
 
     return np.array(output)
 
-def ecm(Iorig,Inew):
-    mn = len(Iorig)
-    res = 0.0
-    for ij in range(0,mn):
-            res += math.pow(Iorig[ij] - Inew[ij],2)
-    res /= mn
-    return res
+def ecm(Iorig, Inew, width, height):
+    m = []
+    ecmR = 0.0
 
-def psnr(Iorig,Inew):
-    return 10.0*math.log10(math.pow(255,2)/ecm(Iorig,Inew))
+    for i in xrange(0, height):
+        row = []
+
+        for j in xrange(0, width):
+            c = math.pow(Iorig[i*width+j] - Inew[i*width+j], 2)
+            ecmR += c
+            c /= float(width * height)
+            row.append(c)
+
+        m.append(row)
+
+    ecmR /= float(width * height)
+    return (ecmR, np.matrix(m))
 
 # Este script larga output.csv, con el formato que buscamos para que lo tome
 # el software para graficar, Tableau.
@@ -35,7 +41,7 @@ contraste = map(lambda x: 'originales/'+x, os.listdir('originales'))
 originales = {}
 
 for fname in contraste:
-    if fname[-3:] != 'csv':
+    if fname[-3:] != 'csv' or fname[-8:] == '_ecm.csv':
         continue
 
     matches = re.match(r"^(originales)\/(.*)\.csv$", fname)
@@ -47,7 +53,7 @@ for fname in contraste:
     originales[name] = fromSTRToNumpy(data)
 
 for fname in files:
-    if fname[-3:] != 'csv':
+    if fname[-3:] != 'csv' or fname[-8:] == '_ecm.csv':
         continue
 
     matches = re.match(r"^(splines|bilineal|knn)\/(.*)_test_([0-9]+)_?([0-9]+)?\.csv$", fname)
@@ -71,8 +77,7 @@ for fname in files:
 
     matriz = fromSTRToNumpy(data)
 
-    ecmR = ecm(originales[name], matriz)
-    psnrR = psnr(originales[name], matriz)
+    (ecmR, ecmM) = ecm(originales[name], matriz, 401, 401)
 
     output = {
         'name': name,
@@ -80,7 +85,6 @@ for fname in files:
         'k': k,
         'bloques': bloque,
         'ecm': ecmR,
-        'psnr': psnrR
     }
 
     if os.path.isfile(fname + '.stats'):
@@ -100,5 +104,12 @@ for fname in files:
 
     dataset.append(output)
 
+    matches = re.match(r"(.*)\.csv$", fname)
+
+    with open(matches.group(1) + '_ecm.csv', 'w+') as handle:
+        print >> handle, "X Y Value"
+        for (x, y), value in np.ndenumerate(ecmM):
+            print >> handle, x, y, value
+
 df = pd.DataFrame(dataset)
-df.to_csv('output.csv', index=False)
+df.to_csv('output.txt', index=False)
