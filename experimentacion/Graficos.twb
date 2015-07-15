@@ -1,0 +1,1540 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook source-platform='win' version='9.0' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 9000.15.0527.1215                                -->
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='output' inline='true' name='textscan.42199.933647245372' version='9.0'>
+      <connection class='textscan' directory='//VBOXSVR/metnum-tp3/experimentacion' filename='output.txt' password='' server=''>
+        <relation name='output#txt' table='[output#txt]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='Bilineal Timer' ordinal='0' />
+            <column datatype='real' name='Bilineal Timer Mean' ordinal='1' />
+            <column datatype='real' name='Bilineal Timer Std' ordinal='2' />
+            <column datatype='string' name='Splines Timer' ordinal='3' />
+            <column datatype='real' name='Splines Timer Mean' ordinal='4' />
+            <column datatype='real' name='Splines Timer Std' ordinal='5' />
+            <column datatype='integer' name='bloques' ordinal='6' />
+            <column datatype='real' name='ecm' ordinal='7' />
+            <column datatype='integer' name='k' ordinal='8' />
+            <column datatype='string' name='kNN Timer' ordinal='9' />
+            <column datatype='real' name='kNN Timer Mean' ordinal='10' />
+            <column datatype='real' name='kNN Timer Std' ordinal='11' />
+            <column datatype='string' name='method' ordinal='12' />
+            <column datatype='string' name='name' ordinal='13' />
+            <column datatype='real' name='psnr' ordinal='14' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>Bilineal Timer</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Bilineal Timer]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>Bilineal Timer</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Bilineal Timer Mean</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Bilineal Timer Mean]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>Bilineal Timer Mean</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Bilineal Timer Std</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Bilineal Timer Std]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>Bilineal Timer Std</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Splines Timer</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Splines Timer]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>Splines Timer</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Splines Timer Mean</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Splines Timer Mean]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>Splines Timer Mean</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Splines Timer Std</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Splines Timer Std]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>Splines Timer Std</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>bloques</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[bloques]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>bloques</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ecm</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[ecm]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>ecm</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>k</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[k]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>k</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kNN Timer</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[kNN Timer]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>kNN Timer</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kNN Timer Mean</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[kNN Timer Mean]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>kNN Timer Mean</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kNN Timer Std</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[kNN Timer Std]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>kNN Timer Std</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>method</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[method]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>method</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[name]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>name</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>psnr</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[psnr]</local-name>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias>psnr</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name></remote-name>
+            <remote-type>0</remote-type>
+            <parent-name>[output#txt]</parent-name>
+            <remote-alias></remote-alias>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column aggregation='CountD' datatype='string' default-role='measure' default-type='quantitative' name='[Bilineal Timer]' role='dimension' type='nominal'>
+      </column>
+      <column datatype='string' name='[Method (group)]' role='dimension' type='nominal'>
+        <calculation class='categorical-bin' column='[method]'>
+          <bin value='&quot;bilineal&quot;'>
+            <value>&quot;bilineal&quot;</value>
+          </bin>
+          <bin value='&quot;knn&quot;'>
+            <value>&quot;knn&quot;</value>
+          </bin>
+          <bin value='&quot;splines&quot;'>
+            <value>&quot;splines&quot;</value>
+          </bin>
+        </calculation>
+        <aliases>
+          <alias key='&quot;bilineal&quot;' value='Interpolación Bilineal' />
+          <alias key='&quot;knn&quot;' value='Vecinos Más Cercanos' />
+          <alias key='&quot;splines&quot;' value='Interpolación Por Splines' />
+        </aliases>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column aggregation='CountD' datatype='string' default-role='measure' default-type='quantitative' name='[Splines Timer]' role='dimension' type='nominal'>
+      </column>
+      <column aggregation='Sum' caption='Bloques' datatype='integer' name='[bloques]' role='dimension' type='ordinal'>
+      </column>
+      <column caption='MSE' datatype='real' name='[ecm]' role='measure' type='quantitative'>
+      </column>
+      <column aggregation='CountD' datatype='string' default-role='measure' default-type='quantitative' name='[kNN Timer]' role='dimension' type='nominal'>
+      </column>
+      <column aggregation='Sum' caption='K' datatype='integer' name='[k]' role='dimension' type='ordinal'>
+      </column>
+      <column caption='Method' datatype='string' name='[method]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal'>
+      </column>
+      <column caption='PSNR' datatype='real' name='[psnr]' role='measure' type='quantitative'>
+      </column>
+      <column-instance column='[bloques]' derivation='None' name='[none:bloques:ok]' pivot='key' type='ordinal' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[Method (group)]' type='palette'>
+            <map to='#17becf'>
+              <bucket>&quot;knn&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;bilineal&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;splines&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:bloques:ok]' type='palette'>
+            <map to='#17becf'>
+              <bucket>4</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>8</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>-1</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Bilineal vs Splines para Imágenes Geométricas'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='output' name='textscan.42199.933647245372' />
+          </datasources>
+          <datasource-dependencies datasource='textscan.42199.933647245372'>
+            <column caption='10 * LOG((65025/[MSE]), 10)' datatype='real' name='[Calculation_1520714234026857]' role='measure' type='quantitative' user:unnamed='Bilineal vs Splines para Imágenes Geométricas'>
+              <calculation class='tableau' formula='10 * LOG((65025/[ecm]), 10)' />
+            </column>
+            <column datatype='string' name='[Method (group)]' role='dimension' type='nominal'>
+              <calculation class='categorical-bin' column='[method]'>
+                <bin value='&quot;bilineal&quot;'>
+                  <value>&quot;bilineal&quot;</value>
+                </bin>
+                <bin value='&quot;knn&quot;'>
+                  <value>&quot;knn&quot;</value>
+                </bin>
+                <bin value='&quot;splines&quot;'>
+                  <value>&quot;splines&quot;</value>
+                </bin>
+              </calculation>
+              <aliases>
+                <alias key='&quot;bilineal&quot;' value='Interpolación Bilineal' />
+                <alias key='&quot;knn&quot;' value='Vecinos Más Cercanos' />
+                <alias key='&quot;splines&quot;' value='Interpolación Por Splines' />
+              </aliases>
+            </column>
+            <column aggregation='Sum' caption='Bloques' datatype='integer' name='[bloques]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='MSE' datatype='real' name='[ecm]' role='measure' type='quantitative'>
+            </column>
+            <column aggregation='Sum' caption='K' datatype='integer' name='[k]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='Method' datatype='string' name='[method]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[Calculation_1520714234026857]' derivation='None' name='[none:Calculation_1520714234026857:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[bloques]' derivation='None' name='[none:bloques:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[ecm]' derivation='None' name='[none:ecm:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[k]' derivation='None' name='[none:k:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[textscan.42199.933647245372].[Method (group)]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[Method (group)]' member='&quot;bilineal&quot;' />
+              <groupfilter function='member' level='[Method (group)]' member='&quot;splines&quot;' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[textscan.42199.933647245372].[none:name:nk]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:name:nk]' />
+              <groupfilter from='&quot;paisaje_1&quot;' function='range' level='[none:name:nk]' to='&quot;rostro_2&quot;' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[textscan.42199.933647245372].[Method (group)]</column>
+            <column>[textscan.42199.933647245372].[none:name:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='subtitle' class='0' field='[textscan.42199.933647245372].[none:ecm:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[textscan.42199.933647245372].[none:ecm:qk]' scope='rows' value='true' />
+            <encoding attr='space' class='0' field='[textscan.42199.933647245372].[none:ecm:qk]' field-type='quantitative' max='12000.0' min='0.0' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[none:bloques:ok]' />
+            </encodings>
+          </pane>
+          <pane id='1' y-axis-name='[textscan.42199.933647245372].[none:ecm:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[none:bloques:ok]' />
+            </encodings>
+          </pane>
+          <pane id='2' y-axis-name='[textscan.42199.933647245372].[none:Calculation_1520714234026857:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[none:bloques:ok]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>([textscan.42199.933647245372].[none:ecm:qk] + [textscan.42199.933647245372].[none:Calculation_1520714234026857:qk])</rows>
+        <cols>([textscan.42199.933647245372].[none:name:nk] / [textscan.42199.933647245372].[none:k:ok])</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Bilineal vs Splines para Otras Imágenes'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='output' name='textscan.42199.933647245372' />
+          </datasources>
+          <datasource-dependencies datasource='textscan.42199.933647245372'>
+            <column datatype='string' name='[Method (group)]' role='dimension' type='nominal'>
+              <calculation class='categorical-bin' column='[method]'>
+                <bin value='&quot;bilineal&quot;'>
+                  <value>&quot;bilineal&quot;</value>
+                </bin>
+                <bin value='&quot;knn&quot;'>
+                  <value>&quot;knn&quot;</value>
+                </bin>
+                <bin value='&quot;splines&quot;'>
+                  <value>&quot;splines&quot;</value>
+                </bin>
+              </calculation>
+              <aliases>
+                <alias key='&quot;bilineal&quot;' value='Interpolación Bilineal' />
+                <alias key='&quot;knn&quot;' value='Vecinos Más Cercanos' />
+                <alias key='&quot;splines&quot;' value='Interpolación Por Splines' />
+              </aliases>
+            </column>
+            <column aggregation='Sum' caption='Bloques' datatype='integer' name='[bloques]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='MSE' datatype='real' name='[ecm]' role='measure' type='quantitative'>
+            </column>
+            <column aggregation='Sum' caption='K' datatype='integer' name='[k]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='Method' datatype='string' name='[method]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[bloques]' derivation='None' name='[none:bloques:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[ecm]' derivation='None' name='[none:ecm:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[k]' derivation='None' name='[none:k:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[psnr]' derivation='None' name='[none:psnr:qk]' pivot='key' type='quantitative' />
+            <column caption='PSNR' datatype='real' name='[psnr]' role='measure' type='quantitative'>
+            </column>
+          </datasource-dependencies>
+          <filter class='categorical' column='[textscan.42199.933647245372].[Method (group)]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[Method (group)]' member='&quot;bilineal&quot;' />
+              <groupfilter function='member' level='[Method (group)]' member='&quot;splines&quot;' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[textscan.42199.933647245372].[none:name:nk]'>
+            <groupfilter from='&quot;paisaje_1&quot;' function='range' level='[none:name:nk]' to='&quot;rostro_2&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[textscan.42199.933647245372].[none:name:nk]</column>
+            <column>[textscan.42199.933647245372].[Method (group)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[none:bloques:ok]' />
+            </encodings>
+          </pane>
+          <pane id='1' y-axis-name='[textscan.42199.933647245372].[none:ecm:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[none:bloques:ok]' />
+            </encodings>
+          </pane>
+          <pane id='2' y-axis-name='[textscan.42199.933647245372].[none:psnr:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[none:bloques:ok]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>([textscan.42199.933647245372].[none:ecm:qk] + [textscan.42199.933647245372].[none:psnr:qk])</rows>
+        <cols>([textscan.42199.933647245372].[none:name:nk] / [textscan.42199.933647245372].[none:k:ok])</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Bilineal vs kNN'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='output' name='textscan.42199.933647245372' />
+          </datasources>
+          <datasource-dependencies datasource='textscan.42199.933647245372'>
+            <column datatype='string' name='[Method (group)]' role='dimension' type='nominal'>
+              <calculation class='categorical-bin' column='[method]'>
+                <bin value='&quot;bilineal&quot;'>
+                  <value>&quot;bilineal&quot;</value>
+                </bin>
+                <bin value='&quot;knn&quot;'>
+                  <value>&quot;knn&quot;</value>
+                </bin>
+                <bin value='&quot;splines&quot;'>
+                  <value>&quot;splines&quot;</value>
+                </bin>
+              </calculation>
+              <aliases>
+                <alias key='&quot;bilineal&quot;' value='Interpolación Bilineal' />
+                <alias key='&quot;knn&quot;' value='Vecinos Más Cercanos' />
+                <alias key='&quot;splines&quot;' value='Interpolación Por Splines' />
+              </aliases>
+            </column>
+            <column caption='MSE' datatype='real' name='[ecm]' role='measure' type='quantitative'>
+            </column>
+            <column aggregation='Sum' caption='K' datatype='integer' name='[k]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='Method' datatype='string' name='[method]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[ecm]' derivation='None' name='[none:ecm:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[k]' derivation='None' name='[none:k:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[psnr]' derivation='None' name='[none:psnr:qk]' pivot='key' type='quantitative' />
+            <column caption='PSNR' datatype='real' name='[psnr]' role='measure' type='quantitative'>
+            </column>
+          </datasource-dependencies>
+          <filter class='categorical' column='[textscan.42199.933647245372].[Method (group)]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[Method (group)]' member='&quot;bilineal&quot;' />
+              <groupfilter function='member' level='[Method (group)]' member='&quot;knn&quot;' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[textscan.42199.933647245372].[Method (group)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[textscan.42199.933647245372].[none:ecm:qk]' field-type='quantitative' max='12000.0' min='0.0' range-type='fixed' scope='rows' type='space' />
+            <format attr='subtitle' class='0' field='[textscan.42199.933647245372].[none:ecm:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[textscan.42199.933647245372].[none:ecm:qk]' scope='rows' value='true' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[Method (group)]' />
+            </encodings>
+          </pane>
+          <pane id='1' y-axis-name='[textscan.42199.933647245372].[none:ecm:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[Method (group)]' />
+            </encodings>
+          </pane>
+          <pane id='2' y-axis-name='[textscan.42199.933647245372].[none:psnr:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[Method (group)]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>([textscan.42199.933647245372].[none:ecm:qk] + [textscan.42199.933647245372].[none:psnr:qk])</rows>
+        <cols>([textscan.42199.933647245372].[none:name:nk] / [textscan.42199.933647245372].[none:k:ok])</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Sheet 6'>
+      <table>
+        <view>
+          <datasources>
+          </datasources>
+          <aggregation value='true' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows></rows>
+        <cols></cols>
+      </table>
+    </worksheet>
+    <worksheet name='Tiempo de Bilineal y kNN vs K'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='output' name='textscan.42199.933647245372' />
+          </datasources>
+          <datasource-dependencies datasource='textscan.42199.933647245372'>
+            <column caption='[kNN Timer Mean]/1000' datatype='real' name='[Calculation_5460714231351091]' role='measure' type='quantitative' user:unnamed='Sheet 5'>
+              <calculation class='tableau' formula='[kNN Timer Mean]/1000' />
+            </column>
+            <column caption='[Bilineal Timer Mean]/1000' datatype='real' name='[Calculation_9850714231334498]' role='measure' type='quantitative' user:unnamed='Sheet 5'>
+              <calculation class='tableau' formula='[Bilineal Timer Mean]/1000' />
+            </column>
+            <column datatype='string' name='[Method (group)]' role='dimension' type='nominal'>
+              <calculation class='categorical-bin' column='[method]'>
+                <bin value='&quot;bilineal&quot;'>
+                  <value>&quot;bilineal&quot;</value>
+                </bin>
+                <bin value='&quot;knn&quot;'>
+                  <value>&quot;knn&quot;</value>
+                </bin>
+                <bin value='&quot;splines&quot;'>
+                  <value>&quot;splines&quot;</value>
+                </bin>
+              </calculation>
+              <aliases>
+                <alias key='&quot;bilineal&quot;' value='Interpolación Bilineal' />
+                <alias key='&quot;knn&quot;' value='Vecinos Más Cercanos' />
+                <alias key='&quot;splines&quot;' value='Interpolación Por Splines' />
+              </aliases>
+            </column>
+            <column aggregation='Sum' caption='K' datatype='integer' name='[k]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='Method' datatype='string' name='[method]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[Calculation_5460714231351091]' derivation='None' name='[none:Calculation_5460714231351091:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_9850714231334498]' derivation='None' name='[none:Calculation_9850714231334498:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[k]' derivation='None' name='[none:k:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[textscan.42199.933647245372].[Method (group)]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[Method (group)]' member='&quot;bilineal&quot;' />
+              <groupfilter function='member' level='[Method (group)]' member='&quot;knn&quot;' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[textscan.42199.933647245372].[Method (group)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[textscan.42199.933647245372].[none:Calculation_9850714231334498:qk]' scope='rows' value='Tiempo (ms)' />
+            <format attr='subtitle' class='0' field='[textscan.42199.933647245372].[none:Calculation_9850714231334498:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[textscan.42199.933647245372].[none:Calculation_9850714231334498:qk]' scope='rows' value='true' />
+            <format attr='title' class='0' field='[textscan.42199.933647245372].[none:Calculation_5460714231351091:qk]' scope='rows' value='Tiempo (ms)' />
+            <format attr='subtitle' class='0' field='[textscan.42199.933647245372].[none:Calculation_5460714231351091:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[textscan.42199.933647245372].[none:Calculation_5460714231351091:qk]' scope='rows' value='true' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='show-null-value-warning' value='false' />
+          </style-rule>
+          <style-rule element='refboxplot'>
+            <format attr='palette' id='refline0' value='bp_brightblue' />
+            <format attr='boxplot-style' id='refline0' value='modern' />
+            <format attr='palette' id='refline1' value='bp_red' />
+            <format attr='opacity' id='refline1' value='70' />
+            <format attr='palette' id='refline2' value='bp_brightblue' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[Method (group)]' />
+            </encodings>
+            <reference-line axis-column='[textscan.42199.933647245372].[none:Calculation_9850714231334498:qk]' boxplot-mark-exclusion='true' boxplot-whisker-type='standard' enable-instant-analytics='true' formula='average' id='refline1' label-type='none' scope='per-cell' symmetric='false' value-column='[textscan.42199.933647245372].[none:Calculation_9850714231334498:qk]' z-order='2' />
+            <reference-line axis-column='[textscan.42199.933647245372].[none:Calculation_5460714231351091:qk]' boxplot-mark-exclusion='true' boxplot-whisker-type='standard' enable-instant-analytics='true' formula='average' id='refline2' label-type='none' scope='per-cell' symmetric='false' value-column='[textscan.42199.933647245372].[none:Calculation_5460714231351091:qk]' z-order='3' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-transparency' value='255' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='1' y-axis-name='[textscan.42199.933647245372].[none:Calculation_9850714231334498:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[Method (group)]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-transparency' value='255' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' y-axis-name='[textscan.42199.933647245372].[none:Calculation_5460714231351091:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[Method (group)]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-transparency' value='255' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([textscan.42199.933647245372].[none:Calculation_9850714231334498:qk] + [textscan.42199.933647245372].[none:Calculation_5460714231351091:qk])</rows>
+        <cols>[textscan.42199.933647245372].[none:k:ok]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Tiempo de Splines vs K y Tamaño de Bloque'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='output' name='textscan.42199.933647245372' />
+          </datasources>
+          <datasource-dependencies datasource='textscan.42199.933647245372'>
+            <column caption='[Splines Timer Mean]/1000' datatype='real' name='[Calculation_0710714230826451]' role='measure' type='quantitative' user:unnamed='Tiempo de Splines vs K y Tamaño de Bloque'>
+              <calculation class='tableau' formula='[Splines Timer Mean]/1000' />
+            </column>
+            <column datatype='string' name='[Method (group)]' role='dimension' type='nominal'>
+              <calculation class='categorical-bin' column='[method]'>
+                <bin value='&quot;bilineal&quot;'>
+                  <value>&quot;bilineal&quot;</value>
+                </bin>
+                <bin value='&quot;knn&quot;'>
+                  <value>&quot;knn&quot;</value>
+                </bin>
+                <bin value='&quot;splines&quot;'>
+                  <value>&quot;splines&quot;</value>
+                </bin>
+              </calculation>
+              <aliases>
+                <alias key='&quot;bilineal&quot;' value='Interpolación Bilineal' />
+                <alias key='&quot;knn&quot;' value='Vecinos Más Cercanos' />
+                <alias key='&quot;splines&quot;' value='Interpolación Por Splines' />
+              </aliases>
+            </column>
+            <column aggregation='Sum' caption='Bloques' datatype='integer' name='[bloques]' role='dimension' type='ordinal'>
+            </column>
+            <column aggregation='Sum' caption='K' datatype='integer' name='[k]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='Method' datatype='string' name='[method]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[Calculation_0710714230826451]' derivation='None' name='[none:Calculation_0710714230826451:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[bloques]' derivation='None' name='[none:bloques:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[k]' derivation='None' name='[none:k:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[textscan.42199.933647245372].[Method (group)]'>
+            <groupfilter function='member' level='[Method (group)]' member='&quot;splines&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[textscan.42199.933647245372].[Method (group)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[textscan.42199.933647245372].[none:Calculation_0710714230826451:qk]' scope='rows' value='Tiempo (ms)' />
+            <format attr='subtitle' class='0' field='[textscan.42199.933647245372].[none:Calculation_0710714230826451:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[textscan.42199.933647245372].[none:Calculation_0710714230826451:qk]' scope='rows' value='true' />
+          </style-rule>
+          <style-rule element='refboxplot'>
+            <format attr='palette' id='refline0' value='bp_orange' />
+            <format attr='boxplot-style' id='refline0' value='modern' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[textscan.42199.933647245372].[none:bloques:ok]' />
+            </encodings>
+            <reference-line axis-column='[textscan.42199.933647245372].[none:Calculation_0710714230826451:qk]' boxplot-mark-exclusion='true' boxplot-whisker-type='standard' enable-instant-analytics='true' formula='average' id='refline0' label-type='none' scope='per-cell' symmetric='false' value-column='[textscan.42199.933647245372].[none:Calculation_0710714230826451:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-transparency' value='255' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([textscan.42199.933647245372].[none:bloques:ok] * [textscan.42199.933647245372].[none:Calculation_0710714230826451:qk])</rows>
+        <cols>[textscan.42199.933647245372].[none:k:ok]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Bilineal vs kNN'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='1' param='[textscan.42199.933647245372].[Method (group)]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+      </viewpoint>
+      <highlight>
+        <color-one-way>
+          <field>[textscan.42199.933647245372].[Method (group)]</field>
+          <field>[textscan.42199.933647245372].[none:bloques:ok]</field>
+          <field>[textscan.42199.933647245372].[none:k:ok]</field>
+          <field>[textscan.42199.933647245372].[none:name:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Bilineal vs Splines para Imágenes Geométricas'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='1' param='[textscan.42199.933647245372].[none:bloques:ok]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[textscan.42199.933647245372].[Method (group)]</field>
+          <field>[textscan.42199.933647245372].[none:Calculation_1520714234026857:qk]</field>
+          <field>[textscan.42199.933647245372].[none:bloques:ok]</field>
+          <field>[textscan.42199.933647245372].[none:k:ok]</field>
+          <field>[textscan.42199.933647245372].[none:name:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Bilineal vs Splines para Otras Imágenes'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='1' param='[textscan.42199.933647245372].[none:bloques:ok]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[textscan.42199.933647245372].[none:bloques:ok]</field>
+          <field>[textscan.42199.933647245372].[none:name:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Tiempo de Splines vs K y Tamaño de Bloque'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[textscan.42199.933647245372].[none:bloques:ok]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[textscan.42199.933647245372].[Method (group)]</field>
+          <field>[textscan.42199.933647245372].[none:Calculation_0710714230826451:qk]</field>
+          <field>[textscan.42199.933647245372].[none:Splines Timer Mean:qk]</field>
+          <field>[textscan.42199.933647245372].[none:bloques:ok]</field>
+          <field>[textscan.42199.933647245372].[none:k:ok]</field>
+          <field>[textscan.42199.933647245372].[none:name:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Tiempo de Bilineal y kNN vs K'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='1' param='[textscan.42199.933647245372].[Method (group)]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[textscan.42199.933647245372].[Method (group)]</field>
+          <field>[textscan.42199.933647245372].[none:Calculation_0710714230826451:qk]</field>
+          <field>[textscan.42199.933647245372].[none:Calculation_5460714231351091:qk]</field>
+          <field>[textscan.42199.933647245372].[none:Calculation_9850714231334498:qk]</field>
+          <field>[textscan.42199.933647245372].[none:Splines Timer Mean:qk]</field>
+          <field>[textscan.42199.933647245372].[none:bloques:ok]</field>
+          <field>[textscan.42199.933647245372].[none:k:ok]</field>
+          <field>[textscan.42199.933647245372].[none:name:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Sheet 6'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Bilineal vs kNN' width='192'>
+      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
+      iuL/A6WJHl9mfW/kAAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='192' name='Bilineal vs Splines para Imágenes Geométricas' width='192'>
+      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
+      AABJRU5ErkJggg==
+    </thumbnail>
+    <thumbnail height='192' name='Bilineal vs Splines para Otras Imágenes' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='Tiempo de Splines vs K y Tamaño de Bloque' width='192'>
+      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
+      gg==
+    </thumbnail>
+    <thumbnail height='192' name='Tiempo de Bilineal y kNN vs K' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAA7EAAAOxAGVKw4b
+      AAAQwklEQVR4nO3d+XMbVYIH8G+rdcuWZMuy7Dh27DgQhxx2nJDgHDO5WAIZrqG2CooasgVb
+      NbU/UMBQRfHb/gUUVO3+wjIsG8jsLjPshGsywwC5uJdg4oTEuZzEjnPItyXrstTd+4MzM2wS
+      dTvqltx2fz+/Jd39+iXVX3W/fq/fExRFUUBkQYIgCLaZrgTRTGIAyNIYALI0BoAsjQEgS2MA
+      yNLsM10BujWTE6OIyW74lATSdj+CPieEma7ULMYAzDJXuw7g44kGBIdPYeXdDyHoc850lWY1
+      PgLNOjKunP4GS+95BE1hL3/9dWIAZh0ZUlkTOg+fhCyzE18vBmDWsWNB/TzUjnfim/MjYAb0
+      ETgWaHZJjw1iVPEi7MwgmrSjtsoPG5+DCiIIgsAAkGVxMBxZ3g2vQZPJJDKZzEzUhajkbgiA
+      0+mEKIr6SpUzuNQ/hIraWkyMDgEAcrkcQqEQXC6XvrKJDFSUNsDlE/vwm/dO4fFn/wnzPFN/
+      F4vF4HA44PF4jD4dUUEEQRCM7QlWFOQSV9DVN47qcr+hRRMVg+GN4K59e3H64gB6+3twujdq
+      dPFEhjJ8LFDrvb/AHbkhfPgf+7BwfpXRxRMZqkj9ADnERhPwBAJwXLvHsA1AWrJXExj+z5NF
+      PYej1ofQYy0AitEG+Cs7/BWB4hRNc5YYdCG4o6mo5xA8//+S53BoMg2b2w734srSnrOkZyMy
+      GQaALI0BIEtjAMjSGACyNAaALI0BIEtjAMjSGACyNAaALI0BIEtjAMjSGACyNAaALI0BIEtj
+      AMjSGACyNAaALI0BIEtjAMjSGACyNAaALI0BIEtjAMjSGACyNAaALM3QqREVOYlPfvdbXBiX
+      sWLzDqy9LWJk8USGM/YOIIhYsW4rli/w4spAzNCiiYrB0AAIgguR6jLIcCEzEUNakhCNRhGN
+      RjE+Pm7kqYgMYewjUG4Yh48OYWlLA77fH4UsiohEph6DYjHeEch8jH0EEivgy/bgg6/6ce99
+      PwGXwiCzK9lK8VwhhsyGK8WT5am2ARRZRiadRHx8BCl4UBkoh9fjgk0QSlU/oqJSCUAW57oO
+      48zVYSjOcniRRFdGQahmMe5sb4ajdHUkKhqVNoCM7KQE0W6HzTb1i6/IEnI5GaLTccut55u1
+      ARKdUShZucCqT4+vPQLBwSc9upHGKpE2OJxA3/cHcCqu4OzhLjRteBh3r2k07NVR+vQolFTO
+      oNJuztsaZgAoL41+gDTOnbiEuJjA/PXrMHr6AjJrGuE16OShR1sMKomoMBo/jW7cvqoZKTSg
+      yZ1D8+rFcJemXkQloREAGRMjw4j2HsE7ez7GsWM9yJSmXkQlofEIJCM1YcO6Bx9FrccGly8I
+      Z2nqRVQSmmOB0vEr+PpQFCGPHeEFK7H5JwGIpagZUQloBEABbG6sXL8ezQE7nJ4A3//TnKIS
+      AAWKIqCyfgFOnjuG7wFUzFuCYGUZHIIA9gXTXKDSETaJ88dPw1u/CBH/1Luf5Ngl9FzKYvHS
+      xltuC3AwHJmNRkeYA7UNNej8+iN8OpKBHTm4Kpuw/q52PgbRnKE5HFpRFMi5SeRgh9Nug1Dg
+      QDjeAchspjccWpGRTqWRTqUhl+TLAaLS0XwLdOnYAbz3xWnYFBm3b3gIW1rr2ACmOUMjAEmc
+      6rqKe574JRbiHP7r96eQbK2DrzR1Iyo6jQB40br+NuzZ/W/4BCJW3f1zwwbCEZmBZhtAdJcj
+      4BFh8wYR9PL9D80tGgHI4Pjn36H2ru3Yfmc1/vfz4xwMR3OK5lggOTeGwwcP4qI4jDNRBXv3
+      2rD9vrV8FKI5QaMfQEEqNoRzPRcwlpyELzgPi5rr4HU7DfkkkmgmafQEA0AG3+39ACeyTnig
+      ILwggCVLb/3iJzIrjQDYEa4LwTvoRI3fgWBFGS9+mlM0ApBF9OIYKhcuR5XbBl+5h51gNKdo
+      BECAIsdwovMIBn0iqhtFNDRGjJ1Rl2gGaTaCM8k4zp/pgzdSiWB5COU+V0F3ATaCyWymMRgu
+      h5MHP8T//P4Qrg6dwJ8OnEBxZ/EhKi3NACQmJPjLnZBsDmQTKUilqRdRSWjOC7R8Ywfm19px
+      +tgo1v50OVwqeyuKgnRiHMPDo0hN8l5B5qfSnk2i+9vTiCUuI5YTgNw4zpy8gPqISgiUGP7w
+      37+D4rFjwtWMRx/ZyIm0yNRUApDG5YsDWLihDdULpkYAuX0V6m+ABD9+/uRTyI2cwdsf9fJx
+      iUxP9Xoev3IJPef8KLv25/KQC+HqYN79BQHIxofw+XfnceemtXBJEqJDQwCAyclJVFVVGVZx
+      IiOo/6ALIpxO519ngHDY1ZsMipTEn95/H96mdrjkLMBF8sjkVKdHD9U1obW9HYHplqbkMK+x
+      BWkliZHROObNDxtRR6Ki4SJ5ZFlcJI8sjwEgS2MAyNIYALI0BoAsjUP7ybS+/fZbvPzyy7rK
+      ePrpp9HR0ZF3u2leg0qShOeee07XOVavXo0nnnhCVxlkHul0GqOjo6r77NmzBw8//HDe7cFg
+      MO81N42P4kvHJgh48qH8/5DpqKiJGFQbMoPolavY/8nHqvvEhofx0Ycf5t3+061b0bRwYd7t
+      prkDKIqC7MV+Xeeweb2wV4V0lUHmISeTyA0N6ypDDIUg+m4+ixU7wsjyGACyNNO0AWZK9moC
+      ubHiznjqqPHBHlT7lo5miuUDkDo+jOTRwaKew79tAQNgUqYKgCLL+o4voD3v39oA/9YGXeel
+      2cs8AVAUTPT16SrCWV0NR5hfndH0mScAJtHV1YWha59xFkIURWzatElXHQ4ePIjXX3+94ONb
+      W1vx/PPP66qDVTAA1zlx9CjOnjpV8PFOp0t3AFatWoWFKp03WtzuuTEXhyxJyKVSusqwSepT
+      MzAA13lk2zZIHesKPl6w6X+zLAhCwesx/+X4W5X4LopkV3FfBvhWR+BdMf3PZKVMBqloVNc5
+      xcoK2FGedzsDcJ1Pv/gCfWd78m6XJAk2m4B8fYgOpwNP/upXuuowGo3i+OHvCj6+qrYGVRs3
+      3tIxjogXnmXF7UW3h833OSwDcB1/bS3ULoPz58+jsrISgcDNpwqw2/X/l9ZWV6P6rrsKPl4o
+      4BHIOb8czvn5fynnKgbgOmNjYxgYGMi73efzIZPJ5N3H4eBKmrMJA3CdHTt2zHQV6JqJVAon
+      L17UVcbiBQ2q89kyAGRaYnk5PEtaVPf59NNPsXXr1vxl+P2qx5smALKi4J0vv1DdR8pJEO1i
+      3u23LV2KLS2Lja5a6Sn6esWF0oxwL7pgMIj29nbVfY4dO6a5jxrTBEAURfzyxRdV99m1axd2
+      7txZohrNnOzEBBI6esUdFRVwRKoNrNHcxeHQZGmmuQPQ34wnEzjXX/jXcUFZhvqTL/0FA2BC
+      Nr8f9tsWFXy8mKePgm7EAJhQOBxGODyzM2tLklTQ8PIfE0VR15COUjBNAGRZxvvvv6+6T09P
+      D95999282+vr67Fq1Sqjq2ZJb/361/jmc/W3clr+5Y1/N6RnvJiKUDsFw33f47293bjvHx5H
+      zTR75RVFQW9vr+o+oVBIdR9OvW6cv//Z/Xhg4090lSGK+V9Zm0URAjCBi+cGMJFMQ76FO6go
+      injmmWeMrw4VxOV2wSGVae84yxUhAOVoW7MM3x+PQpIkRKNcI+xWpVIpxOPxgo93Op0IBvOv
+      5TYdk7EYssMjuspwzK+bWjjOxIr6gCZyjbCCfPXVV3j11VcLPn7lypV4UaNTUYucmUQumdRV
+      hl69vb3Yt2+f6j7d3d1444038m7ftGkTmpqa8m4vTgDsZVjWthQ+c7d/TGvLli3YsmXLTFdj
+      xgmCoNmIXr58uWYZqtvNMjUimcuhAwfQc/pM3u0joyMQRREBf/4+hyeeetLUDWFTTY5L5jIw
+      NIQzF87n3Z5IJGCz2eAZyd9OKNFvqy4MAN1UW1sb6urqdJVhM+D76GLjIxBZFmeHJstjAMjS
+      GACytBsawfF4HMlb7ACZTCWQzOTg9pbBbZcxHk9AgYiy8jLYbVPvYScnJyGKIjvEyFT0N4JT
+      g9iz58/I2hUMShE81eHDyx+cxIqWZqzpWI9w2VTG2AgmszGmEeyuwoOPPoYHt2+FIxdDf+95
+      uL1lCATDKHObtxOECDDoNehkYhidX38D76IOtITtiCUSOLL/jxCXbcfmO2oB8A5A5mNIT7A8
+      OY5Df/wIUm0Lqu05XD7VjauiH+kcUOXiLGlkbroDoEgKKhsakcgkcHlgDB1LlmC06yTqVm7G
+      0iYOf56OExMp/Gtf/ukYjfDPzfMQ4Q/SDdgTbAK9qQzeGxgr6jl+MS+ECgdHvvyYIAgCA0CW
+      xaEQZHkMAFkaA0CWxgCQpTEAZGkMAFkaA0CWxp6R66TTaUgaiyurEQQBXq/XwBpRMTEA13nl
+      lVfQ2dlZ8PFutxtvvvmmgTWiYmJP8HUymQxklfW5PvvsMzQ2NqK+vj7vPmb/N9IUzgt0Ey6X
+      2qKaU+sAu1wuXuRzBBvBZGkMAFkaA0CWxgCQpTEAZGkMAFkaA0CWxgCQpTEAZGkMAFkaA0CW
+      xgCQpTEAZGkMAFkaA0CWpn926GwG47E4FNGFQKAMUmoCsVQO/kAATjvzNVvFYjFkMhldZVRV
+      VWmu1K4mk8noXlGovLwcbrc773bdATjbeQCdfXEkhoew+mePoW//bzCSsaNu9XZsa2vQWzzN
+      kLfeeguHDh3SVcbu3bvhcBQ+I3VXVxdeeukl1X0URVEN2bPPPouOjo6823UH4Pa19+D2NTl0
+      /fm3GEv2YzBegwfvbcI7357FprYGfnQ8S61bt071s8/+/n44HA5EIpG8+4iivhWC1qxZg7ff
+      flt1n127dmHnzp0Fn0P/9ankcOGHw7jqW4JNTeXogQ0QAEWWkJMkDA8NAZhaJK+qiusFzBap
+      2gWIl4Xzbg8saQcAxFXKUHQ8/pSK7gD0HjmEL88lsXTJYiQyFShzR3HkeBa1DSvgFkW4r/1C
+      cHXI2cXp9cErqn8frcX8l78BAXAHI2iaF0NyYhyZXD3+7t5tOHslhVVLFhpRP6Ki0h2ASNNS
+      RJp+9BfBZqyu1VsqUWlovqdUFAXpiTGMTaRRoimEiEpG5Q4g4WrPSRztPonxnAseJJERA2i5
+      ow0tzRFwBWCaC1QCoMDlr8a6uxejzDW1WzYdx2hMAu8DNFeoBMCOinAVhs8fww9jOVw8cgSN
+      Gx/A6kVVs6J1TzQdGo3gFI59+QPkUA5K8xKc/bILdyzaCl9p6kYW19fXp9kb3d3djd27d+fd
+      vmHDBjQ2NubdrhEAF+YvCmLv4XFs3pjD0LJF4IyYVCpidS082x5Q3edOje32oPoVq/ka1Ouv
+      QMDVjwP7O1G72ItJLED+oUVExhEEATadwym0uuM0ApDFxe5+zFuxGq1OG3zBWo7toTlF43q2
+      w+NN4pNDXyBU5kBN81rUN0YYApozNK5lCemMD4/84+NoCfKyp7lH46pWYHfbcODt13EQQE3z
+      Wmzf1gZ9Q6RIy/79+/Haa68VfHxbWxteeOEFA2s0d6kEIIfBS0NYuGEHWrdd6whLjWPw0iBq
+      6sJ8DCqitWvXoqWlpeDjtVa5ob9RuY4F2OQUOg/uxWDaBjfSkFxVWL6ijR1hReb1ernSZImo
+      BEBEqP42bJ6/CNlUHGm4Ue5x6PrGk8hsNJ9kBEGA0+uHsxS1ISoxzUbw0LlO/GFfJybhQPuW
+      +9G+MMRHIAs4enkAX0dHdZVx/8ZlsJn8ieH/AKvtEZfGt5uiAAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='144' name='Sheet 6' width='174'>
+      iVBORw0KGgoAAAANSUhEUgAAAK4AAACQCAYAAACRfFAzAAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAABmUlEQVR4nO3SQQ0AIBDAMMC/58MDH7KkVbDH9szMgpjzOwBeGJck45JkXJKMS5JxSTIu
+      ScYlybgkGZck45JkXJKMS5JxSTIuScYlybgkGZck45JkXJKMS5JxSTIuScYlybgkGZck45Jk
+      XJKMS5JxSTIuScYlybgkGZck45JkXJKMS5JxSTIuScYlybgkGZck45JkXJKMS5JxSTIuScYl
+      ybgkGZck45JkXJKMS5JxSTIuScYlybgkGZck45JkXJKMS5JxSTIuScYlybgkGZck45JkXJKM
+      S5JxSTIuScYlybgkGZck45JkXJKMS5JxSTIuScYlybgkGZck45JkXJKMS5JxSTIuScYlybgk
+      GZck45JkXJKMS5JxSTIuScYlybgkGZck45JkXJKMS5JxSTIuScYlybgkGZck45JkXJKMS5Jx
+      STIuScYlybgkGZck45JkXJKMS5JxSTIuScYlybgkGZck45JkXJKMS5JxSTIuScYlybgkGZck
+      45JkXJKMS5JxSTIuScYlybgkGZck45JkXJKMS5JxSTIuSRePYgUc7kJNEQAAAABJRU5ErkJg
+      gg==
+    </thumbnail>
+  </thumbnails>
+</workbook>
