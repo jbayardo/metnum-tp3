@@ -368,9 +368,13 @@ int main(int argc, char *argv[]) {
             assert(proporcionalidad);
             // reduce lo original usando k
             Matrix* reduced = reducir(m, k);
+            Matrix outputt(*reduced, k);
+            output = new Matrix(reduced->rows(), reduced->columns());
             // La volvemos a aumentar con k
-            output = new Matrix(*reduced, k);
-            ZoomSplines(*reduced, *output, k, B);
+            for (int x = 0; x < 10; x++){
+                *output = outputt;
+                ZoomSplines(*reduced, *output, k, B);
+            }
             free(reduced);
             break;
         }
@@ -382,9 +386,13 @@ int main(int argc, char *argv[]) {
 
             // reduce lo original usando k
             Matrix* reduced = reducir(m, k);
+            Matrix outputt(*reduced, k);
+            output = new Matrix(reduced->rows(), reduced->columns());
             // La volvemos a aumentar con k
-            output = new Matrix(*reduced, k);
-            ZoomVecinosMasCercanos(*reduced,*output,k);
+            for (int x = 0; x < 10; x++){
+                *output = outputt;
+                ZoomVecinosMasCercanos(*reduced,*output,k);
+            }
             free(reduced);
             break;
         }
@@ -395,9 +403,13 @@ int main(int argc, char *argv[]) {
             assert(proporcionalidad);
             // reduce lo original usando k
             Matrix* reduced = reducir(m, k);
+            Matrix outputt(*reduced, k);
+            output = new Matrix(reduced->rows(), reduced->columns());
             // La volvemos a aumentar con k
-            output = new Matrix(*reduced, k);
-            ZoomBilineal(*reduced,*output,k);
+            for (int x = 0; x < 10; x++){
+                *output = outputt;
+                ZoomBilineal(*reduced,*output,k);
+            }
             free(reduced);
             break;
         }
