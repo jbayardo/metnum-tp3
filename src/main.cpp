@@ -19,6 +19,8 @@ enum ZOOM
 
 void ZoomSplines(const Matrix& original, Matrix& output, int k, int B)
 {
+    Timer timer("Splines Timer");
+
     for (int i = 0; i < original.rows(); i = i+(B-1))
     {
         //for (int j = 0; j < bloquesEnUnaColumna; j++)
@@ -153,6 +155,8 @@ void calculoFrecuencia(const Matrix& m, int* frecuencias)
 
 void ZoomBilineal(const Matrix& original, Matrix& output, int k)
 {
+    Timer timer("Bilineal Timer");
+
     // recorremos las filas que tienen pixeles viejos y llenamos los pixeles nuevos entre ellos
     for (int i=0; i < original.rows(); i++)
     {
@@ -226,6 +230,8 @@ void ZoomBilineal(const Matrix& original, Matrix& output, int k)
 
 void ZoomVecinosMasCercanos(const Matrix& input, Matrix& output, int k)
 {
+    Timer timer("kNN Timer");
+
     // Para este modo de zoom decidimos lo siguiente:
     //  A cada punto nuevo, le calculamos la distancia (manhattan) a puntos ya existentes.
     //  Nos quedamos con el de menor distancia.
@@ -336,23 +342,23 @@ int main(int argc, char *argv[]) {
     switch(op)
     {
         case ZOOM_KNN:
+        {
             output = new Matrix(m, k);
-            Timer timer("kNN Timer");
             ZoomVecinosMasCercanos(m,*output,k);
-            timer.stop();
             break;
+        }
         case ZOOM_BILINEAL:
+        {
             output = new Matrix(m, k);
-            Timer timer("Bilineal Timer");
             ZoomBilineal(m,*output,k);
-            timer.stop();
             break;
+        }
         case ZOOM_SPLINES:
+        {
             output = new Matrix(m, k);
-            Timer timer("Splines Timer");
             ZoomSplines(m,*output,k,B);
-            timer.stop();
             break;
+        }
         case TEST_SPLINES: // Modo de reducción
         {
             // no tiene sentido usar bloques mayores a una imagen.
@@ -364,9 +370,7 @@ int main(int argc, char *argv[]) {
             Matrix* reduced = reducir(m, k);
             // La volvemos a aumentar con k
             output = new Matrix(*reduced, k);
-            Timer timer("Splines Timer");
             ZoomSplines(*reduced, *output, k, B);
-            timer.stop();
             free(reduced);
             break;
         }
@@ -380,9 +384,7 @@ int main(int argc, char *argv[]) {
             Matrix* reduced = reducir(m, k);
             // La volvemos a aumentar con k
             output = new Matrix(*reduced, k);
-            Timer timer("kNN Timer");
             ZoomVecinosMasCercanos(*reduced,*output,k);
-            timer.stop();
             free(reduced);
             break;
         }
@@ -395,23 +397,23 @@ int main(int argc, char *argv[]) {
             Matrix* reduced = reducir(m, k);
             // La volvemos a aumentar con k
             output = new Matrix(*reduced, k);
-            Timer timer("Bilineal Timer");
             ZoomBilineal(*reduced,*output,k);
-            timer.stop();
             free(reduced);
             break;
         }
         default:
+        {
             cout << "MODO DE OPERACION NO DEFINIDO " << endl;
             assert(false);
             break;
+        }
     }
 
     output->writeMatrix(argv[2]);
 
     free(output);
 
-    Logger::getInstance().dump(std::string(argv[2]) + '.stats');
+    Logger::getInstance().dump(std::string(argv[2]) + std::string(".stats"));
     return 0;
 }
 

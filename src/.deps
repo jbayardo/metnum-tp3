@@ -1,0 +1,49 @@
+{
+    ".deps_version": 2, 
+    "g++ -c -std=c++11 -O3 -ffast-math -ggdb ./Auxiliares.cpp -o ./Auxiliares.o": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "Auxiliares.cpp": "input-adee6ac6ddd9a8a52356771dae1b85be", 
+        "Auxiliares.h": "input-d45bc8d4fb5a3ae03ac92ea3fa5c80ce", 
+        "Auxiliares.o": "output-fd6f32c64b87203c370627186c6fba27", 
+        "ItPixelesNuevos.h": "input-dc53c120604c4bdb059195a10fd346ff", 
+        "Matrix.h": "input-1bddb213ca4ec3c299883982b9ff32e8"
+    }, 
+    "g++ -c -std=c++11 -O3 -ffast-math -ggdb ./ItPixelesNuevos.cpp -o ./ItPixelesNuevos.o": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "ItPixelesNuevos.cpp": "input-19cf87eb7fd4c12855e9c869f8616a2b", 
+        "ItPixelesNuevos.h": "input-dc53c120604c4bdb059195a10fd346ff", 
+        "ItPixelesNuevos.o": "output-8f4cda824ec2499d644d2bf14e562121"
+    }, 
+    "g++ -c -std=c++11 -O3 -ffast-math -ggdb ./Matrix.cpp -o ./Matrix.o": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "Matrix.cpp": "input-f765560199b2f735d6022bbf136fa2c1", 
+        "Matrix.h": "input-1bddb213ca4ec3c299883982b9ff32e8", 
+        "Matrix.o": "output-f8165a87fae5a2543434f3b5fd2fef09"
+    }, 
+    "g++ -c -std=c++11 -O3 -ffast-math -ggdb ./TrazadorCubico.cpp -o ./TrazadorCubico.o": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "Matrix.h": "input-1bddb213ca4ec3c299883982b9ff32e8", 
+        "TrazadorCubico.cpp": "input-108bebfca688b688511ca7f375d5cb95", 
+        "TrazadorCubico.h": "input-7294c6c1eaeaa950d5f4d76218a9b7ef", 
+        "TrazadorCubico.o": "output-1a43289ac9dd5ec3a1b8f6844ab8b856"
+    }, 
+    "g++ -c -std=c++11 -O3 -ffast-math -ggdb ./main.cpp -o ./main.o": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "Auxiliares.h": "input-d45bc8d4fb5a3ae03ac92ea3fa5c80ce", 
+        "Counter.h": "input-0161b90a2129181e3b719a2c73e14f16", 
+        "ItPixelesNuevos.h": "input-dc53c120604c4bdb059195a10fd346ff", 
+        "Matrix.h": "input-1bddb213ca4ec3c299883982b9ff32e8", 
+        "TrazadorCubico.h": "input-7294c6c1eaeaa950d5f4d76218a9b7ef", 
+        "main.cpp": "input-48172c4d02c6acd6ccb764e32eeef9f2", 
+        "main.o": "output-6e6cf81e873565304088f80d657cbe13"
+    }, 
+    "g++ -o ./tp ./ItPixelesNuevos.o ./Auxiliares.o ./main.o ./Matrix.o ./TrazadorCubico.o": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "Auxiliares.o": "input-fd6f32c64b87203c370627186c6fba27", 
+        "ItPixelesNuevos.o": "input-8f4cda824ec2499d644d2bf14e562121", 
+        "Matrix.o": "input-f8165a87fae5a2543434f3b5fd2fef09", 
+        "TrazadorCubico.o": "input-1a43289ac9dd5ec3a1b8f6844ab8b856", 
+        "main.o": "input-6e6cf81e873565304088f80d657cbe13", 
+        "tp": "output-f2e1904a94550f40af5c6c6a0ac33b7d"
+    }
+}
