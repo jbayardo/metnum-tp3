@@ -5,6 +5,7 @@
 #include "TrazadorCubico.h"
 #include <chrono>
 #include <assert.h>     /* assert */
+#include "Counter.h"
 
 enum ZOOM
 {
@@ -330,22 +331,27 @@ int main(int argc, char *argv[]) {
     // con este constructor generamos la matriz para la imagen aumentada
     // y traspasamos los puntos ya conocidos
     Matrix* output = NULL;
-    
-    chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
+
     // No todos los modos utilizan el mismo tipo de matriz output.
     switch(op)
     {
         case ZOOM_KNN:
             output = new Matrix(m, k);
+            Timer timer("kNN Timer");
             ZoomVecinosMasCercanos(m,*output,k);
+            timer.stop();
             break;
         case ZOOM_BILINEAL:
             output = new Matrix(m, k);
+            Timer timer("Bilineal Timer");
             ZoomBilineal(m,*output,k);
+            timer.stop();
             break;
         case ZOOM_SPLINES:
             output = new Matrix(m, k);
+            Timer timer("Splines Timer");
             ZoomSplines(m,*output,k,B);
+            timer.stop();
             break;
         case TEST_SPLINES: // Modo de reducción
         {
@@ -358,7 +364,9 @@ int main(int argc, char *argv[]) {
             Matrix* reduced = reducir(m, k);
             // La volvemos a aumentar con k
             output = new Matrix(*reduced, k);
+            Timer timer("Splines Timer");
             ZoomSplines(*reduced, *output, k, B);
+            timer.stop();
             free(reduced);
             break;
         }
@@ -372,7 +380,9 @@ int main(int argc, char *argv[]) {
             Matrix* reduced = reducir(m, k);
             // La volvemos a aumentar con k
             output = new Matrix(*reduced, k);
+            Timer timer("kNN Timer");
             ZoomVecinosMasCercanos(*reduced,*output,k);
+            timer.stop();
             free(reduced);
             break;
         }
@@ -385,7 +395,9 @@ int main(int argc, char *argv[]) {
             Matrix* reduced = reducir(m, k);
             // La volvemos a aumentar con k
             output = new Matrix(*reduced, k);
+            Timer timer("Bilineal Timer");
             ZoomBilineal(*reduced,*output,k);
+            timer.stop();
             free(reduced);
             break;
         }
@@ -395,13 +407,11 @@ int main(int argc, char *argv[]) {
             break;
     }
 
-    chrono::high_resolution_clock::time_point t2 = chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
-
     output->writeMatrix(argv[2]);
 
     free(output);
-    cout << "TESTDATA=." << duration << ".";
+
+    Logger::getInstance().dump(std::string(argv[2]) + '.stats');
     return 0;
 }
 
