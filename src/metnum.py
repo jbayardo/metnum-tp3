@@ -10,7 +10,7 @@ import shutil
 def build():
   compile()
   link()
-  shutil.copyfile("./tp", "../Testing/tp")
+  shutil.copyfile("./tp", "../experimentacion/tp")
 
 def compile():
   for source in sources:
