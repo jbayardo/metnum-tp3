@@ -1,0 +1,39 @@
+../tp ./originales/mountain.png.csv ./bilineal/mountain_test_1.csv 2049 2049 1 1
+../tp ./originales/mountain.png.csv ./bilineal/mountain_test_2.csv 2049 2049 2 1
+../tp ./originales/mountain.png.csv ./bilineal/mountain_test_3.csv 2049 2049 3 1
+../tp ./originales/mountain.png.csv ./bilineal/mountain_test_4.csv 2049 2049 4 1
+../tp ./originales/mountain.png.csv ./bilineal/mountain_test_5.csv 2049 2049 5 1
+../tp ./originales/mountain.png.csv ./bilineal/mountain_test_6.csv 2049 2049 6 1
+../tp ./originales/mountain.png.csv ./bilineal/mountain_test_7.csv 2049 2049 7 1
+../tp ./originales/mountain.png.csv ./bilineal/mountain_test_8.csv 2049 2049 8 1
+../tp ./originales/mountain.png.csv ./bilineal/mountain_test_9.csv 2049 2049 9 1
+
+../tp ./originales/nic-cage.png.csv ./bilineal/nic-cage_test_1.csv 2049 2049 1 1
+../tp ./originales/nic-cage.png.csv ./bilineal/nic-cage_test_2.csv 2049 2049 2 1
+../tp ./originales/nic-cage.png.csv ./bilineal/nic-cage_test_3.csv 2049 2049 3 1
+../tp ./originales/nic-cage.png.csv ./bilineal/nic-cage_test_4.csv 2049 2049 4 1
+../tp ./originales/nic-cage.png.csv ./bilineal/nic-cage_test_5.csv 2049 2049 5 1
+../tp ./originales/nic-cage.png.csv ./bilineal/nic-cage_test_6.csv 2049 2049 6 1
+../tp ./originales/nic-cage.png.csv ./bilineal/nic-cage_test_7.csv 2049 2049 7 1
+../tp ./originales/nic-cage.png.csv ./bilineal/nic-cage_test_8.csv 2049 2049 8 1
+../tp ./originales/nic-cage.png.csv ./bilineal/nic-cage_test_9.csv 2049 2049 9 1
+
+../tp ./originales/pattern1.png.csv ./bilineal/pattern1_test_1.csv 2049 2049 1 1
+../tp ./originales/pattern1.png.csv ./bilineal/pattern1_test_2.csv 2049 2049 2 1
+../tp ./originales/pattern1.png.csv ./bilineal/pattern1_test_3.csv 2049 2049 3 1
+../tp ./originales/pattern1.png.csv ./bilineal/pattern1_test_4.csv 2049 2049 4 1
+../tp ./originales/pattern1.png.csv ./bilineal/pattern1_test_5.csv 2049 2049 5 1
+../tp ./originales/pattern1.png.csv ./bilineal/pattern1_test_6.csv 2049 2049 6 1
+../tp ./originales/pattern1.png.csv ./bilineal/pattern1_test_7.csv 2049 2049 7 1
+../tp ./originales/pattern1.png.csv ./bilineal/pattern1_test_8.csv 2049 2049 8 1
+../tp ./originales/pattern1.png.csv ./bilineal/pattern1_test_9.csv 2049 2049 9 1
+
+../tp ./originales/pattern2.png.csv ./bilineal/pattern2_test_1.csv 2049 2049 1 1
+../tp ./originales/pattern2.png.csv ./bilineal/pattern2_test_2.csv 2049 2049 2 1
+../tp ./originales/pattern2.png.csv ./bilineal/pattern2_test_3.csv 2049 2049 3 1
+../tp ./originales/pattern2.png.csv ./bilineal/pattern2_test_4.csv 2049 2049 4 1
+../tp ./originales/pattern2.png.csv ./bilineal/pattern2_test_5.csv 2049 2049 5 1
+../tp ./originales/pattern2.png.csv ./bilineal/pattern2_test_6.csv 2049 2049 6 1
+../tp ./originales/pattern2.png.csv ./bilineal/pattern2_test_7.csv 2049 2049 7 1
+../tp ./originales/pattern2.png.csv ./bilineal/pattern2_test_8.csv 2049 2049 8 1
+../tp ./originales/pattern2.png.csv ./bilineal/pattern2_test_9.csv 2049 2049 9 1
