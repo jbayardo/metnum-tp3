@@ -36,7 +36,7 @@ Palabras Clave: Vecinos Más Cercanos, Interpolación Bilineal, Interpolación p
 \integrante{Cuneo Christian}{755/13}{chriscuneo93@gmail.com} % obligatorio 
 \integrante{Gómez Fabián}{799/13}{fabiandagomez@hotmail.com} % obligatorio 
 \integrante{Keegan Maureen}{761/13}{maukeegan@hotmail.com} % obligatorio 
- 
+
 \maketitle
 
 \pagebreak
@@ -132,7 +132,8 @@ Para la implementación de splines, creamos una clase Trazador Cúbico y la util
 La implementación por splines toma un parámetro extra que el resto de los algoritmos no toma. Este parámetro representa el tamaño de bloque en el cual se realizará el spline. Es decir con cuántos píxeles se procesará el trazador. Una vez tomado el bloque, se actúa como si fuese una subimagen y se le aplica zoom. En el siguiente gráfico se muestra como quedarían los bloques armados para una configuración determinada. Se ve como cuando el tamaño de la imagen no llega a completar los bloques necesarios para que todo píxel pertenezca a un bloque, se utilizan más bloques pero repitiendo píxeles entre ellos.
 
 \begin{figure}[H]
-  \includegraphics[width=\linewidth]{Bloques}
+\centering
+  \includegraphics[scale=0.7]{Bloques}
   \caption{Bloques}\label{fig:Bloques}
 \end{figure}
 
@@ -329,20 +330,39 @@ Ahora veamos los resultados:
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.8]{BI-Time-knn_vs_bilineal.png}
-\caption{}
+\caption{Comparando tiempo de cómputo del método de Vecinos mas Cercanos con el de Bilineal}
 \label{fig:BI-time-knn_vs_bilineal}
 \end{figure}
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.8]{BI-Time-Splines.png}
-\caption{}
+\caption{Tiempo de cómputo interpolación por splines segun el tamaño de bloque}
 \label{fig:BI-time-Splines}
 \end{figure}
-Por lo que se puede ver en la \ref{fig:BI-time-knn_vs_bilineal}, la hipótesis sobre el método de vecinos mas cercanos es acertada. Hay que notar que en la implementación la diferencia entre procesar un punto nuevo y mantener un punto viejo es nula en complejidad temporal, mantener un punto viejo es simplemente copiar los datos de ese punto original a su lugar correspondiente en la imagen agrandada en $O(1)$, y calcular un punto nuevo es básicamente ver que punto de los originales esta mas cerca, y como solo hay 4 posibles candidatos como mucho, esto se reduce también a $O(1)$, por lo tanto el tiempo de computo va a verse afectado únicamente por el tamaño de la imagen agrandada, y justamente esto ultimo depende estrictamente de $k$.
-En esa misma \ref{fig:BI-time-knn_vs_bilineal} se puede ver que la segunda hipótesis fue también acertada, esto se debe que, para generar cada valor nuevo (nuevo píxeles) se realiza una sola operación, por lo tanto el tiempo va a terminar dependiendo de cuantos píxeles hay que generar, y este valor esta representado por $k$.
+Por lo que se puede ver en la Figura \ref{fig:BI-time-knn_vs_bilineal}, la hipótesis sobre el método de vecinos mas cercanos es acertada. Hay que notar que en la implementación la diferencia entre procesar un punto nuevo y mantener un punto viejo es nula en complejidad temporal, mantener un punto viejo es simplemente copiar los datos de ese punto original a su lugar correspondiente en la imagen agrandada en $O(1)$, y calcular un punto nuevo es básicamente ver que punto de los originales esta mas cerca, y como solo hay 4 posibles candidatos como mucho, esto se reduce también a $O(1)$, por lo tanto el tiempo de computo va a verse afectado únicamente por el tamaño de la imagen agrandada, y este valor esta representado por $k$, y cuando $k$ crece, crece cuadraticamente la cantidad de píxeles a calcular, ya que $k$ actúa a lo ancho y alto.\smallbreak
+En esa misma Figura \ref{fig:BI-time-knn_vs_bilineal} se puede ver que la segunda hipótesis fue también acertada, esto se debe que, para generar cada valor nuevo (nuevo píxeles) se realiza una sola operación, por lo tanto el tiempo va a terminar dependiendo de cuantos píxeles hay que generar, al igual que el caso anterior, depende de $k$ y afecta cuadraticamente a la cantidad de píxeles a generar.\smallbreak
 
-Por ultimo en la \ref{fig:BI-time-Splines} se puede ver los datos recopilados sobre el método de Interpolación por Splines, y lo que se puede ver es que la variación de $k$ va a afectar al tiempo de computo de forma potencial. Al analizar el algoritmo de la implementación uno ve a simple vista que se compone por dos ciclos $for$ anidados que dependen del tamaño de la imagen original y del tamaño de bloque, estos $for$ van a ir iterando por cada bloque a procesar, entonces cuanto mas grande sea el bloque, menos iteraciones realizaran. Luego, por cada bloque el algoritmo primero interpolara primero entre los pixeles viejos que se mantuvieron (ahora estarán con k pixeles de distancia entre ellos) de forma horizontal y luego de forma vertical, por lo tanto hará una función interpoladora por linea y columna con puntos viejos, y evaluara la función en los puntos nuevos a calcular. El tiempo que lleva calcular estos polinomios va a ser afectado solamente por el tamaño de bloque $B$, ya que siendo el bloque mas grande abarcara mas puntos originales, por lo tanto crecerá el sistema de ecuaciones a resolver para calcular el polinomio de interpolación, mas específicamente crecerá la matriz a la que luego se le aplicara eliminación gaussiana que cuesta $O(n^2)$ calcular (siendo n el ancho de la matriz).
-Luego 
+El segundo método tarda menos que el primero ya que el segundo solo realiza una operación por píxel a generar, y el primero, por cada píxel a generar, debe calcular su distancia con al menos 2 píxeles y como mucho 4. Por lo tanto cuesta mas temporalmente calcular usando Vecinos mas cercanos que Bilineal. \smallbreak
+
+Por ultimo en la Figura \ref{fig:BI-time-Splines} se puede ver los datos recopilados sobre el método de Interpolación por Splines, y lo que se puede ver es que la variación de $k$ va a afectar al tiempo de computo de forma potencial. Al analizar el algoritmo de la implementación uno ve a simple vista que se compone por dos ciclos $for$ anidados que dependen del tamaño de la imagen original y del tamaño de bloque, estos $for$ van a ir iterando por cada bloque a procesar, entonces cuanto mas grande sea el bloque, menos iteraciones realizaran (porque entrara menos bloques en total). Luego, por cada bloque el algoritmo primero interpolara primero entre los píxeles viejos que se mantuvieron (ahora estarán con k píxeles de distancia entre ellos) de forma horizontal y luego de forma vertical, por lo tanto hará una función interpoladora por linea y columna con puntos viejos, y evaluara la función en los puntos nuevos a calcular. El tiempo que lleva calcular estos polinomios va a ser afectado solamente por el tamaño de bloque $B$, ya que siendo el bloque mas grande abarcara mas puntos originales, por lo tanto crecerá el sistema de ecuaciones a resolver para calcular el polinomio de interpolación, mas específicamente crecerá la matriz a la que luego se le aplicara eliminación gaussiana que cuesta $O(n^2)$ calcular, siendo n el ancho de la matriz (igual la matriz es cuadrada en este caso), ese n va a ser $B$ ya que representa la cantidad de puntos originales que abarca un bloque.\par
+Ahora ya tendríamos procesados los píxeles que se encuentran entre los píxeles que se mantuvieron vertical y horizontalmente, luego se procede a ir fila por fila y crear un polinomio de interpolación por splines para cada una, generando de esa forma los píxeles faltantes, por lo tanto nuevamente el costo que llevara generar el polinomio de interpolación se vera afectado solo por el tamaño de bloque $B$ de forma cuadrática.\par
+Sabiendo todo este procedimiento se llega a la conclusión que $k$ solamente afecta inmediatamente luego de generar los polinomios de interpolación por splines, al momento de evaluar la función generada en los píxeles faltantes (los nuevos), aquí es donde entra en juego $k$ ya que va a modificar cuantas evaluaciones de la función hay que hacer, ya que, como vimos antes, incrementara cuadraticamente la cantidad de píxeles nuevos.\par
+Todo esto quiere decir que la complejidad temporal se ve afectada independientemente por $B$ y por $k$. Y esto se refleja muy acordemente en la Figura \ref{fig:BI-time-Splines}, ya que para todos los tamaños de bloque el crecimiento con respecto a $k$ es el mismo.\par\smallbreak
+
+Las complejidades son aproximadas\par\smallbreak
+
+Algo muy importante que se puede ver para todos los métodos es que la información de la imagen no afecta al tiempo de computo del algoritmo, por lo tanto acertamos también en esa hipótesis.\smallbreak
+
+Por ultimo vamos a poder ver como se comparan los tiempos entre todas las pruebas que realizamos en esta sección:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{BI-Time-All.png}
+\caption{Tiempo de cómputo de todos los casos de experimentación}
+\label{fig:BI-time-Splines}
+\end{figure}
+
+Se puede ver que el método de Zoom utilizando Interpolación por splines puede tener un menor costo temporal a medida que $k$ se agranda, esto sucede porque a medida que $B$ crece, entran menos cantidad de bloques en la imagen original, por lo tanto el tiempo de calculo se va reduciendo. Hay que tener en cuenta igual que, a medida que $k$ se agranda, el error también se va agrandando, y utilizando un $k$ muy grande ya la imagen deja de ser coherente, por lo tanto el zoom por interpolación bilineal va a ser el mas útil de usar, en términos de tiempo de computo, para la mayoría de los casos en los que se utilice.
 
 \section{Conclusión}
 
@@ -350,6 +370,15 @@ Lo que primero pudimos concluir de la experimentación fue que la eficiencia del
 
 Vimos que para las imágenes de paisajes y de rostros, tanto el método de interpolación bilineal como el de vecinos más cercanos son muy similares en cuanto al error al interpolar, mientras que para las imágenes geométricas la diferencia es mucho más notoria. Se puede ver, sin embargo, que interpolación bilineal consistentemente alcanza un menor error.
 
-Por otra parte, el método de interpolación bilineal y el de splines se comportan (en cuanto a las métricas) de manera muy similar para las imágenes de paisajes y rostros, incluso variando ampliamente la cantidad de bloques. En cuanto a las geométricas, bilineal se comporta levemente mejor. Como bilineal tiene un mejor tiempo que vecinos más cercanos y que splines, si se debe ampliar una imagen cuyo tipo se desconoce, el análisis cuantitativo nos diría que el mejor método es el bilineal. Sin embargo, al efectuar el análisis cualitativo, splines aumenta las imágenes de manera que el error es menos perceptible para el ojo humano, y por lo tanto no podemos concluir que un método sea superior al otro para todo caso. Es importante entonces, antes de elegir el algoritmo a utilizar, considerar la composición de la imagen. Para imágenes geométricas, el mejor método es el bilineal, mientras que para imágenes de rostros, donde los errores son muy visibles, es preferible pagar un costo más alto en tiempo de cómputo y utilizar splines. Para imágenes de paisajes, ambos métodos son efectivos, pero si se desea ahorrar en tiempo de cómputo se puede optar por utilizar interpolación bilineal.
+Por otra parte, el método de interpolación bilineal y el de splines se comportan (en cuanto a las métricas) de manera muy similar para las imágenes de paisajes y rostros, incluso variando ampliamente la cantidad de bloques. En cuanto a las geométricas, bilineal se comporta levemente mejor. Como bilineal tiene un mejor tiempo que vecinos más cercanos y que splines (con un $k$ no muy grande), si se debe ampliar una imagen cuyo tipo se desconoce, el análisis cuantitativo nos diría que el mejor método es el bilineal. Sin embargo, al efectuar el análisis cualitativo, splines aumenta las imágenes de manera que el error es menos perceptible para el ojo humano, y por lo tanto no podemos concluir que un método sea superior al otro para todo caso. Es importante entonces, antes de elegir el algoritmo a utilizar, considerar la composición de la imagen. Para imágenes geométricas, el mejor método es el bilineal, mientras que para imágenes de rostros, donde los errores son muy visibles, es preferible pagar un costo más alto en tiempo de cómputo y utilizar splines. Para imágenes de paisajes, ambos métodos son efectivos, pero si se desea ahorrar en tiempo de cómputo se puede optar por utilizar interpolación bilineal.
+
+Hay que tener en cuenta que el hecho de usar un $k$ lo suficientemente grande va a generar una imagen demasiado incoherente, por lo tanto este parámetro va a depender estrictamente del uso que se le quiera a dar a la imagen de salida, si por ejemplo uno genera la imagen para que se vea desde muy lejos (propagandas de autopista por ejemplo) uno va a poder utilizar un $k$ grande sin mayores problemas, y al utilizar un $k$ así de grande va a ser mas recomendable utilizar interpolación por splines, ya que tiene un menor costo temporal con $k$ grandes, y además el error perceptible visualmente va a ser menor si se utiliza además un tamaño de bloque grande (que entren como mucho 4 bloques en la imagen original) ya que no solo beneficia al costo temporal, sino que genera menos anomalías perceptibles a la vista humana.
+Si se va a utilizar un $k$ menor a 9 aproximadamente, va a ser mas rápido utilizar el zoom con interpolación bilineal, y además la diferencia entre los errores no es tan extensa como para justificar utilizar splines (que provoca menos errores perceptibles).
+
+\section{Referencias}
+\begin{itemize}
+\item Apuntes teóricos de la cátedra.
+\item Numerical analysis - Richard L. Burden J. Douglas Faires - 2011
+\end{itemize}
 
 \end{document}
